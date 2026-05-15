@@ -27,7 +27,8 @@ setup(
             "straight_line = lidar_sensor.straight_line_detect:main",
             "hough_line = lidar_sensor.hough_line_move:main",
             "parallel_line_move = lidar_sensor.parallel_line_demo:main",
-            "corridor_center = lidar_sensor.corridor_center:main"
+            "corridor_center = lidar_sensor.corridor_center:main",
+            "median_filter = lidar_sensor.median_filter:main"
         ],
     },
 )
