@@ -29,7 +29,9 @@ setup(
             "parallel_line_move = lidar_sensor.parallel_line_demo:main",
             "corridor_center = lidar_sensor.corridor_center:main",
             "median_filter = lidar_sensor.median_filter:main",
-            "raw_scan = lidar_sensor.raw_scan:main"
+            "raw_scan = lidar_sensor.raw_scan:main",
+            "db_scan = lidar_sensor.test_table_leg_db_scan:main",
+            "corridor_ransac = lidar_sensor.corridor_ransac:main"
         ],
     },
 )
