@@ -350,6 +350,10 @@ ros2 launch <package_name> <navigation_launch_file>.launch.py
 ---
 
 # Useful Commands
+Create new package, replace `my_package` with your pkg
+```bash
+ros2 pkg create --build-type ament_cmake my_package
+```
 
 List active nodes:
 
