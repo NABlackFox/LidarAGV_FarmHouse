@@ -100,28 +100,21 @@ source install/setup.bash
 
 ---
 
-# Robot State Publisher Visualization
+# Robot Model Visualization
 
-Launch the robot state publisher, RViz2, and the Joint State Publisher GUI to visualize and interact with the AGV model.
-
-Start the robot state publisher:
+Launch the robot model visualization environment:
 
 ```bash
-ros2 launch orlar_agv rsp.launch.py
+ros2 launch orlar_agv view_robot_joint_state_gui.launch.py
 ```
 
-Open RViz2 using the provided configuration file:
+This launch file starts:
 
-```bash
-ros2 run rviz2 rviz2 -d $(ros2 pkg prefix orlar_agv)/share/orlar_agv/config/rsp_config.rviz
-```
+- Robot State Publisher
+- RViz2 with the provided configuration
+- Joint State Publisher GUI
 
-Launch the Joint State Publisher GUI to manually adjust joint positions and verify robot kinematics:
-
-```bash
-ros2 run joint_state_publisher_gui joint_state_publisher_gui
-```
-After all three applications are running, the AGV model should appear in RViz2 and respond to joint movements made through the Joint State Publisher GUI.
+The AGV model will appear in RViz2 and can be manipulated using the Joint State Publisher GUI.
 
 ---
 
