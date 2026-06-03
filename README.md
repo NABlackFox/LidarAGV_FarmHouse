@@ -24,26 +24,59 @@ ros2 --version
 
 # Workspace Setup
 
-Since this repository only contains the `src` directory, it must be placed inside a ROS 2 workspace.
+This repository is intended to be used as the root of a ROS 2 workspace.
 
-Create the workspace:
+Create the workspace directory:
 
 ```bash
 mkdir -p ~/ros2_ws
-cd ~/ros2_ws
 ```
 
-Clone the repository:
+Clone the repository directly into the workspace:
 
 ```bash
-git clone <repository-url>
+git clone <repository-url> ~/ros2_ws
+```
+
+Navigate to the workspace:
+
+```bash
+cd ~/ros2_ws
 ```
 
 Your workspace structure should look similar to:
 
 ```text
 ros2_ws/
-└── <repository-folder>
+├── README.md
+└── src/
+    ├── lidar_sensor/
+    └── orlar_agv/
+```
+
+After building the workspace, the following directories will be generated automatically:
+
+```text
+ros2_ws/
+├── build/
+├── install/
+├── log/
+├── README.md
+└── src/
+```
+
+Build the workspace:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+
+colcon build --symlink-install
+```
+
+Source the workspace:
+
+```bash
+source install/setup.bash
 ```
 ---
 
