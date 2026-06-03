@@ -29,8 +29,8 @@ Since this repository only contains the `src` directory, it must be placed insid
 Create the workspace:
 
 ```bash
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
+mkdir -p ~/ros2_ws
+cd ~/ros2_ws
 ```
 
 Clone the repository:
@@ -43,8 +43,7 @@ Your workspace structure should look similar to:
 
 ```text
 ros2_ws/
-└── src/
-    └── <repository-folder>
+└── <repository-folder>
 ```
 ---
 
