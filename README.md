@@ -130,7 +130,106 @@ If the build completes successfully, source the workspace:
 ```bash
 source install/setup.bash
 ```
+---
+# Running the AGV Simulation
 
+Before launching the simulation, ensure the Gazebo model path is exported so Gazebo can locate the custom world models:
+
+```bash
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:$HOME/ros2_ws/src/orlar_agv/models
+```
+
+Launch the AGV simulation:
+
+```bash
+ros2 launch orlar_agv launch_sim.launch.py
+```
+
+This launch file starts:
+
+- Gazebo Sim (GZ Sim)
+- Robot State Publisher
+- ROS 2 Control Controllers
+- ROS-Gazebo Bridge
+- Joystick Interface
+- Twist Multiplexer
+- AGV Robot Model
+
+---
+
+## Teleoperation
+
+To manually control the AGV using the keyboard, open a new terminal and source the workspace:
+
+
+Run the teleoperation node:
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard \
+  --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
+```
+
+### Controls
+
+```text
+u    i    o
+j    k    l
+m    ,    .
+```
+
+- `i` : Move forward
+- `,` : Move backward
+- `j` : Turn left
+- `l` : Turn right
+- `k` : Stop
+
+---
+
+## Changing the Simulation World (Optional)
+
+The simulation world loaded by Gazebo is configured in:
+
+```text
+src/orlar_agv/launch/launch_sim.launch.py
+```
+
+Locate the following section:
+
+```python
+default_world = os.path.join(
+    get_package_share_directory(package_name),
+    'worlds',
+    'orlar_table_world.sdf'
+)
+```
+
+Replace `orlar_table_world.sdf` with another world file located in the `worlds` directory.
+
+Example:
+
+```python
+default_world = os.path.join(
+    get_package_share_directory(package_name),
+    'worlds',
+    'greenhouse_world.sdf'
+)
+```
+
+After changing the world, rebuild the workspace:
+
+```bash
+cd ~/ros2_ws
+
+colcon build --symlink-install
+
+source install/setup.bash
+```
+
+Then relaunch the simulation:
+
+```bash
+ros2 launch orlar_agv launch_sim.launch.py
+```
 ---
 
 # Robot Model Visualization
