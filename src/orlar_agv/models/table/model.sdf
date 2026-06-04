@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+
+  <model name="orlar_table">
+
+    <static>true</static>
+
+    <link name="table_link">
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://table/meshes/ORLAR_TABLE.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://table/meshes/ORLAR_TABLE.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+
+  </model>
+
+</sdf>
