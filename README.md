@@ -154,9 +154,6 @@ This launch file starts:
 - Joystick Interface
 - Twist Multiplexer
 - AGV Robot Model
-
----
-
 ## Teleoperation
 
 To manually control the AGV using the keyboard, open a new terminal and source the workspace:
@@ -165,8 +162,7 @@ To manually control the AGV using the keyboard, open a new terminal and source t
 Run the teleoperation node:
 
 ```bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard \
-  --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
 ```
 
 ### Controls
@@ -182,8 +178,6 @@ m    ,    .
 - `j` : Turn left
 - `l` : Turn right
 - `k` : Stop
-
----
 
 ## Changing the Simulation World (Optional)
 
