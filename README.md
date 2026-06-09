@@ -247,7 +247,7 @@ The AGV model will appear in RViz2 and can be manipulated using the Joint State 
 
 To use the slam_tool_box, run the simulation like the previous section then use this command to enable the slam
 ```bash
-ros2 launch slam_toolbox online_async_launch.py params_file:=:=./src/orlar_agv/config/mapper_params_online_async.yaml use_sim_time:=true
+ros2 launch slam_toolbox online_async_launch.py params_file:=./src/orlar_agv/config/mapper_params_online_async.yaml use_sim_time:=true
 ```
 To show it in rviz2 use this command
 ```bash
