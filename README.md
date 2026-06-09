@@ -411,3 +411,10 @@ ros2_ws/
 └── src/
     └── <repository-folder>
 ```
+
+# Use full Command
+
+Run Rviz2 with config
+```bash
+ros2 run rviz2 rviz2 -d /path/to/your_config.rviz
+```
