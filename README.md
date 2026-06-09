@@ -243,6 +243,23 @@ This launch file starts:
 The AGV model will appear in RViz2 and can be manipulated using the Joint State Publisher GUI.
 
 ---
+# Slam_tool_box
+
+To use the slam_tool_box, run the simulation like the previous section then use this command to enable the slam
+```bash
+ros2 launch slam_toolbox online_async_launch.py params_file:=:=./src/orlar_agv/config/mapper_params_online_async.yaml use_sim_time:=true
+```
+To show it in rviz2 use this command
+```bash
+ros2 run rviz2 rviz2 -d src/orlar_agv/config/slam_mapping.rviz 
+```
+To save the map please input these location accordingly in the slam pannel
+
+`Save map:` ./src/orlar_agv/maps/orlar_farm_house_map
+
+`Serialize map:` ./src/orlar_agv/maps/orlar_farm_house_serial
+
+---
 
 # WSL2 USB Device Setup (LiDAR)
 
