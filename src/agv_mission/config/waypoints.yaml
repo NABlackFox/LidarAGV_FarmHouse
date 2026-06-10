@@ -1,0 +1,21 @@
+home:
+  x: 0.0
+  y: 0.0
+  yaw: 0.0
+
+inspection_points:
+
+  - id: plant_1
+    x: 1.0
+    y: 1.0
+    yaw: 0.0
+
+  - id: plant_2
+    x: 2.0
+    y: 1.0
+    yaw: 0.0
+
+  - id: plant_3
+    x: 3.0
+    y: 1.0
+    yaw: 0.0
