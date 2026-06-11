@@ -162,7 +162,7 @@ To manually control the AGV using the keyboard, open a new terminal and source t
 Run the teleoperation node:
 
 ```bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
 ### Controls
@@ -251,6 +251,17 @@ To save the map please input these location accordingly in the slam pannel
 `Save map:` ./src/orlar_agv/maps/orlar_farm_house_map
 
 `Serialize map:` ./src/orlar_agv/maps/orlar_farm_house_serial
+
+---
+
+# Navigation with Nav2
+
+To run the navigation, use the following command
+```bash
+ros2 launch agv_mission nav2_test.launch.py 
+```
+
+The launch file will auto run, simulation, rviz2, set initial pose, to set the goal use the `Goal 2D estimate` on the rviz2 GUI
 
 ---
 
