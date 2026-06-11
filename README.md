@@ -261,7 +261,7 @@ To run the navigation, use the following command
 ros2 launch agv_mission nav2_test.launch.py 
 ```
 
-The launch file will auto run, simulation, rviz2, set initial pose, to set the goal use the `Goal 2D estimate` on the rviz2 GUI
+The launch file will auto run, simulation, rviz2, set initial pose, to set the goal use the `Goal 2D Pose` on the rviz2 GUI
 
 ---
 
