@@ -26,7 +26,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'mission_node = agv_mission.mission_node:main'
+            'mission_node = agv_mission.mission_node:main',
+            'set_init_amcl_pose = agv_mission.set_init_amcl_pose:main'
         ],
     },
 )

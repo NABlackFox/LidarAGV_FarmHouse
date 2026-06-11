@@ -39,6 +39,19 @@ def generate_launch_description():
         }.items()
     )
 
+    set_pose_node = Node(
+        package='agv_mission',          
+        executable='set_init_amcl_pose',
+        name='set_init_amcl_pose',
+        parameters=[{
+            'x': 0.0,
+            'y': 0.0,
+            'theta': 0.0,  # Facing forward
+            'cov': 0.25
+        }],
+        output='screen'
+    )
+
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -51,5 +64,6 @@ def generate_launch_description():
     return LaunchDescription([
         sim_launch,
         nav2_launch_cmd,
+        set_pose_node,
         rviz_node
     ])
