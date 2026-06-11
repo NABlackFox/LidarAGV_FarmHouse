@@ -436,3 +436,10 @@ Run Rviz2 with config
 ```bash
 ros2 run rviz2 rviz2 -d /path/to/your_config.rviz
 ```
+
+If the pkg build fail but the error is not inside the file, try remove the build, log and install folder then rebuild
+```bash
+cd ~/ros2_ws
+rm -rf build/ log/ install/
+colcon build --symlink-install
+```
