@@ -410,35 +410,6 @@ Launch the LiDAR driver:
 ros2 launch rplidar_ros rplidar.launch.py
 ```
 
----
-
-# Rebuilding After Changes
-
-After modifying the source code:
-
-```bash
-cd ~/ros2_ws
-
-source /opt/ros/jazzy/setup.bash
-
-colcon build --symlink-install
-
-source install/setup.bash
-```
-
----
-
-# Project Structure
-
-```text
-ros2_ws/
-├── build/
-├── install/
-├── log/
-└── src/
-    └── <repository-folder>
-```
-
 # Use full Command
 
 Run Rviz2 with config
