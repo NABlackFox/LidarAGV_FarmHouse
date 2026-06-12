@@ -6,14 +6,13 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node # 1. Fixed: Added missing Node import
+from launch_ros.actions import Node 
 
 def generate_launch_description(): 
     pkg_nav2_dir = get_package_share_directory('nav2_bringup')
     pkg_orlar_agv = get_package_share_directory('orlar_agv')
     pkg_agv_mission = get_package_share_directory('agv_mission')
 
-    # Path to your map and rviz configuration files inside orlar_agv
     map_yaml_file = os.path.join(pkg_orlar_agv, 'maps', 'orlar_farm_house_map.yaml')
     rviz_config_file = os.path.join(pkg_agv_mission, 'config', 'nav2_cost_map.rviz')
 
