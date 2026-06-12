@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-
+import os
 import yaml
-import math
 
 import rclpy
 from rclpy.node import Node
@@ -10,6 +9,7 @@ from rclpy.action import ActionClient
 from geometry_msgs.msg import PoseStamped
 from nav2_msgs.action import NavigateToPose
 
+from tf_transformations import quaternion_from_euler
 from ament_index_python.packages import get_package_share_directory
 
 
@@ -19,10 +19,17 @@ class MissionNode(Node):
 
         super().__init__('mission_node')
 
+        self.get_logger().info('Starting mission node...')
+
+        # Connect to Nav2    
         self.nav_client = ActionClient(
             self,
             NavigateToPose,
             'navigate_to_pose'
+        )
+
+        self.get_logger().info(
+            'Waiting for Nav2...'
         )
 
         self.nav_client.wait_for_server()
@@ -31,20 +38,17 @@ class MissionNode(Node):
             'Connected to Nav2'
         )
 
+        # Load waypoint file
         self.load_waypoints()
 
+        # Start mission
         self.run_mission()
 
     def load_waypoints(self):
 
-        pkg_path = get_package_share_directory(
-            'agv_mission'
-        )
+        pkg_path = get_package_share_directory('agv_mission')
 
-        yaml_file = (
-            pkg_path +
-            '/config/waypoints.yaml'
-        )
+        yaml_file = os.path.join(pkg_path,'config','waypoints.yaml')
 
         with open(yaml_file, 'r') as file:
             data = yaml.safe_load(file)
@@ -52,34 +56,48 @@ class MissionNode(Node):
         self.home = data['home']
         self.points = data['inspection_points']
 
-    def create_goal(self, x, y):
+        self.get_logger().info(
+            f'Loaded {len(self.points)} inspection points'
+        )
+
+    def create_goal(self, x, y, yaw):
 
         goal = NavigateToPose.Goal()
-
         pose = PoseStamped()
+        pose.header.frame_id = 'map'
+        pose.header.stamp = (
+            self.get_clock().now().to_msg()
+        )
 
-        pose.header.frame_id = "map"
+        # Position
+        pose.pose.position.x = float(x)
+        pose.pose.position.y = float(y)
 
-        pose.pose.position.x = x
-        pose.pose.position.y = y
+        # Orientation
+        q = quaternion_from_euler(
+            0.0,
+            0.0,
+            float(yaw)
+        )
 
-        pose.pose.orientation.w = 1.0
+        pose.pose.orientation.x = q[0]
+        pose.pose.orientation.y = q[1]
+        pose.pose.orientation.z = q[2]
+        pose.pose.orientation.w = q[3]
 
         goal.pose = pose
 
         return goal
 
-    def navigate_to(self, x, y):
+    def navigate_to(self, x, y, yaw):
 
-        goal = self.create_goal(x, y)
+        goal = self.create_goal(x, y, yaw)
 
         self.get_logger().info(
             f'Navigating to ({x:.2f}, {y:.2f})'
         )
 
-        future = self.nav_client.send_goal_async(
-            goal
-        )
+        future = self.nav_client.send_goal_async(goal)
 
         rclpy.spin_until_future_complete(
             self,
@@ -96,20 +114,28 @@ class MissionNode(Node):
 
             return False
 
-        result_future = (
-            goal_handle.get_result_async()
-        )
+        result_future = (goal_handle.get_result_async())
 
         rclpy.spin_until_future_complete(
             self,
             result_future
         )
 
-        self.get_logger().info(
-            'Goal reached'
+        result = result_future.result()
+
+        if result.status == 4:
+
+            self.get_logger().info(
+                'Goal reached'
+            )
+
+            return True
+
+        self.get_logger().warn(
+            f'Navigation failed (status={result.status})'
         )
 
-        return True
+        return False
 
     def capture_image(self, plant_id):
 
@@ -119,6 +145,7 @@ class MissionNode(Node):
 
     def run_mission(self):
 
+        # Visit every plant
         for point in self.points:
 
             self.get_logger().info(
@@ -127,7 +154,8 @@ class MissionNode(Node):
 
             success = self.navigate_to(
                 point['x'],
-                point['y']
+                point['y'],
+                point['yaw']
             )
 
             if not success:
@@ -135,35 +163,41 @@ class MissionNode(Node):
                 self.get_logger().error(
                     'Mission aborted'
                 )
-
                 return
 
             self.capture_image(
                 point['id']
             )
 
+        # Return home
         self.get_logger().info(
             'Returning home'
         )
 
-        self.navigate_to(
+        success = self.navigate_to(
             self.home['x'],
-            self.home['y']
+            self.home['y'],
+            self.home['yaw']
         )
 
-        self.get_logger().info(
-            'Mission Complete'
-        )
+        if success:
+
+            self.get_logger().info(
+                'Mission complete'
+            )
+
+        else:
+
+            self.get_logger().error(
+                'Failed to return home'
+            )
 
 
 def main(args=None):
 
     rclpy.init(args=args)
-
     node = MissionNode()
-
     node.destroy_node()
-
     rclpy.shutdown()
 
 
