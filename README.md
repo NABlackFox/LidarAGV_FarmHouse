@@ -260,8 +260,15 @@ To run the navigation, use the following command
 ```bash
 ros2 launch agv_mission nav2_test.launch.py 
 ```
-
+### Option 1: Set Goal By GUI
 The launch file will auto run, simulation, rviz2, set initial pose, to set the goal use the `Goal 2D Pose` on the rviz2 GUI
+
+### Option 2: Set Goal Using yaml files
+change the setting in the `waypoints.yaml` or `waypoints_map.yaml` in `config` of `agv_mission` pkg then run
+
+```bash
+ros2 run agv_mission mission_node 
+```
 
 ---
 
