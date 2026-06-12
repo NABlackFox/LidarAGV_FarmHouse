@@ -48,7 +48,7 @@ class MissionNode(Node):
 
         pkg_path = get_package_share_directory('agv_mission')
 
-        yaml_file = os.path.join(pkg_path,'config','waypoints.yaml')
+        yaml_file = os.path.join(pkg_path,'config','waypoints_map.yaml')
 
         with open(yaml_file, 'r') as file:
             data = yaml.safe_load(file)

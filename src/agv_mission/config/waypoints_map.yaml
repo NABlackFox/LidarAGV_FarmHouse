@@ -1,0 +1,270 @@
+# ============================================================
+#  waypoints.yaml  —  Forward-only full hall inspection
+#  Map: orlar_farm_house_map
+#
+#  Constraints:
+#    - AGV spawns at (0,0) facing East  (yaw=0)
+#    - Never reverses — yaw is set BEFORE each direction change
+#    - Waypoints spaced ≤ 2 m apart (max actual gap: 1.93 m)
+#
+#  Route (clockwise outer loop then return on Aisle B):
+#
+#    Home(0,0) ──East──► East corridor
+#              ──South─► Aisle C corner
+#    Aisle C   ──West──► West corridor
+#              ──North─► Aisle A corner
+#    Aisle A   ──East──► East corridor
+#              ──South─► Aisle B (y=0)
+#    Aisle B   ──West──► Home(0,0)
+#
+#  Red corners (turn points): (±9.5, 0), (9.5,-6.5),
+#                             (-9.5,-6.5), (-9.5,7), (9.5,7)
+#
+#  yaw: 0=East  1.5708=North  3.1416=West  -1.5708=South
+# ============================================================
+
+home:
+  x: 0.0
+  y: 0.0
+  yaw: 0.0
+
+inspection_points:
+
+  # ── Aisle B East half: Home → East corridor  (facing East) ────────────
+  - id: aisle_b_east_1
+    x:  1.90
+    y:  0.0
+    yaw: 0.0
+
+  - id: aisle_b_east_2
+    x:  3.80
+    y:  0.0
+    yaw: 0.0
+
+  - id: aisle_b_east_3
+    x:  5.70
+    y:  0.0
+    yaw: 0.0
+
+  - id: aisle_b_east_4
+    x:  7.60
+    y:  0.0
+    yaw: 0.0
+
+  # ── Turn: East corridor SE corner — face South ─────────────────────────
+  - id: corner_east_mid
+    x:  9.50
+    y:  0.0
+    yaw: -1.5708
+
+  # ── East corridor South: → Aisle C  (facing South) ────────────────────
+  - id: east_corridor_south_1
+    x:  9.50
+    y: -1.62
+    yaw: -1.5708
+
+  - id: east_corridor_south_2
+    x:  9.50
+    y: -3.25
+    yaw: -1.5708
+
+  - id: east_corridor_south_3
+    x:  9.50
+    y: -4.88
+    yaw: -1.5708
+
+  # ── Turn: SE corner — face West ────────────────────────────────────────
+  - id: corner_east_south
+    x:  9.50
+    y: -6.50
+    yaw: 3.1416
+
+  # ── Aisle C: East → West  (facing West) ───────────────────────────────
+  - id: aisle_c_plant_1
+    x:  7.60
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_2
+    x:  5.70
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_3
+    x:  3.80
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_4
+    x:  1.90
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_5
+    x:  0.0
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_6
+    x: -1.90
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_7
+    x: -3.80
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_8
+    x: -5.70
+    y: -6.50
+    yaw: 3.1416
+
+  - id: aisle_c_plant_9
+    x: -7.60
+    y: -6.50
+    yaw: 3.1416
+
+  # ── Turn: SW corner — face North ───────────────────────────────────────
+  - id: corner_west_south
+    x: -9.50
+    y: -6.50
+    yaw: 1.5708
+
+  # ── West corridor North: → Aisle A  (facing North) ────────────────────
+  - id: west_corridor_north_1
+    x: -9.50
+    y: -4.57
+    yaw: 1.5708
+
+  - id: west_corridor_north_2
+    x: -9.50
+    y: -2.64
+    yaw: 1.5708
+
+  - id: west_corridor_north_3
+    x: -9.50
+    y: -0.71
+    yaw: 1.5708
+
+  - id: west_corridor_north_4
+    x: -9.50
+    y:  1.21
+    yaw: 1.5708
+
+  - id: west_corridor_north_5
+    x: -9.50
+    y:  3.14
+    yaw: 1.5708
+
+  - id: west_corridor_north_6
+    x: -9.50
+    y:  5.07
+    yaw: 1.5708
+
+  # ── Turn: NW corner — face East ────────────────────────────────────────
+  - id: corner_west_north
+    x: -9.50
+    y:  7.0
+    yaw: 0.0
+
+  # ── Aisle A: West → East  (facing East) ───────────────────────────────
+  - id: aisle_a_plant_1
+    x: -7.60
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_2
+    x: -5.70
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_3
+    x: -3.80
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_4
+    x: -1.90
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_5
+    x:  0.0
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_6
+    x:  1.90
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_7
+    x:  3.80
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_8
+    x:  5.70
+    y:  7.0
+    yaw: 0.0
+
+  - id: aisle_a_plant_9
+    x:  7.60
+    y:  7.0
+    yaw: 0.0
+
+  # ── Turn: NE corner — face South ───────────────────────────────────────
+  - id: corner_east_north
+    x:  9.50
+    y:  7.0
+    yaw: -1.5708
+
+  # ── East corridor South: → Aisle B  (facing South) ────────────────────
+  - id: east_corridor_return_1
+    x:  9.50
+    y:  5.25
+    yaw: -1.5708
+
+  - id: east_corridor_return_2
+    x:  9.50
+    y:  3.50
+    yaw: -1.5708
+
+  - id: east_corridor_return_3
+    x:  9.50
+    y:  1.75
+    yaw: -1.5708
+
+  # ── Turn: East corridor center — face West ─────────────────────────────
+  - id: corner_east_center
+    x:  9.50
+    y:  0.0
+    yaw: 3.1416
+
+  # ── Aisle B West half: East corridor → Home  (facing West) ────────────
+  - id: aisle_b_west_1
+    x:  7.60
+    y:  0.0
+    yaw: 3.1416
+
+  - id: aisle_b_west_2
+    x:  5.70
+    y:  0.0
+    yaw: 3.1416
+
+  - id: aisle_b_west_3
+    x:  3.80
+    y:  0.0
+    yaw: 3.1416
+
+  - id: aisle_b_west_4
+    x:  1.90
+    y:  0.0
+    yaw: 3.1416
+
+  # ── Home ───────────────────────────────────────────────────────────────
+  - id: home_return
+    x:  0.0
+    y:  0.0
+    yaw: 0.0
