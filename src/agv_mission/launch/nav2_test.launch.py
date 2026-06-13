@@ -45,7 +45,7 @@ def generate_launch_description():
         parameters=[{
             'x': 0.0,
             'y': 0.0,
-            'theta': 0.0,  # Facing forward
+            'theta': 0.0,  
             'cov': 0.25
         }],
         output='screen'
@@ -56,7 +56,7 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         arguments=['-d', rviz_config_file],
-        parameters=[{'use_sim_time': use_sim_time}], # Ensures RViz uses sim time
+        parameters=[{'use_sim_time': use_sim_time}], 
         output='screen'
     )
 
