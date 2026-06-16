@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- ── Optical link (ROS convention: Z forward, X right) ── -->
+    <joint name="top_camera_optical_joint" type="fixed">
+        <parent link="top_camera_link"/>
+        <child  link="top_camera_link_optical"/>
+        <!-- Standard camera optical frame rotation:
+             rotate -90° around X then -90° around Z  -->
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="top_camera_link_optical"/>
+
+    <!-- ── Camera sensor link ── -->
+    <joint name="top_camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child  link="top_camera_link"/>
+        <!--
+            xyz: x = 0 (centred along body)
+                 y = 0                (centred laterally)
+                 z = 1.231 m          (see calculation above)
+            rpy: pitch = pi/2 → optical axis points straight down
+        -->
+        <origin xyz="0 -1.5 2.914" rpy="0 ${pi/2} 0"/>
+    </joint>
+
+    <link name="top_camera_link">
+        <visual>
+            <!-- Small box body of the camera module -->
+            <geometry>
+                <box size="0.03 0.06 0.03"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+
+    <!-- ── Gazebo sensor plugin ── -->
+    <gazebo reference="top_camera_link">
+        <material>Gazebo/Red</material>
+
+        <sensor name="top_camera" type="camera">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <camera_info_topic>top_camera/camera_info</camera_info_topic>
+                <!--
+                    FOV chosen so that at 0.50 m distance the footprint is
+                    roughly 0.60 m × 0.45 m  (covers a standard work-piece).
+                    horizontal_fov ≈ 2 * atan(0.30 / 0.50) ≈ 0.644 rad  (~36.9°)
+                    Increase to widen the field of view if needed.
+                -->
+                <horizontal_fov>0.644</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>2.0</far>
+                </clip>
+            </camera>
+            <topic>top_camera/image_raw</topic>
+            <gz_frame_id>top_camera_link_optical</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+</robot>
