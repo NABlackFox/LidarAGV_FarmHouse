@@ -4,6 +4,9 @@
     <xacro:arg name="use_ros2_control" default="true"/>  <!-- change true to false -->
     <xacro:arg name="sim_mode" default="true"/>
 
+    <xacro:arg name="use_ros2_control" default="true"/>  <!-- change true to false -->
+    <xacro:arg name="sim_mode" default="true"/>
+
     <xacro:include filename="robot_core.xacro" />
 
     <xacro:if value="$(arg use_ros2_control)">
@@ -15,5 +18,7 @@
     </xacro:unless>
     
     <xacro:include filename="lidar.xacro" />
+    <xacro:include filename="camera.xacro"/>
+    <!--<xacro:include filename="depth_camera.xacro" />-->
     
 </robot>
