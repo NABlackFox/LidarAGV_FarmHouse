@@ -24,18 +24,13 @@ def generate_launch_description():
         launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
     )
 
-    joystick = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(pkg_orlar_agv, 'launch', 'joystick.launch.py')]),
-        launch_arguments={'use_sim_time': 'true'}.items()
-    )
-
-    twist_mux_params = os.path.join(pkg_orlar_agv, 'config', 'twist_mux.yaml')
-    twist_mux = Node(
-        package="twist_mux",
-        executable="twist_mux",
-        parameters=[twist_mux_params, {'use_sim_time': True}],
-        remappings=[('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')]
-    )
+    twist_stamper = Node(
+            package='twist_stamper',
+            executable='twist_stamper',
+            parameters=[{'use_sim_time': True}],
+            remappings=[('/cmd_vel_in','cmd_vel'),
+                        ('/cmd_vel_out','/diff_cont/cmd_vel')] # ros2_control diff consume the /diff_cont/cmd_vel topic (stamped)
+        )
 
     default_world = os.path.join(pkg_orlar_agv, 'worlds', 'orlar_table_world.sdf')    
     world = LaunchConfiguration('world')
@@ -53,7 +48,7 @@ def generate_launch_description():
 
     spawn_entity = Node(
         package='ros_gz_sim', executable='create',
-        arguments=['-topic', 'robot_description', '-name', 'my_bot', '-z', '0.1'],
+        arguments=['-topic', 'robot_description', '-name', 'my_bot', '-z', '0.7'],
         output='screen'
     )
 
@@ -76,11 +71,11 @@ def generate_launch_description():
         arguments=['--ros-args', '-p', f'config_file:={bridge_params}']
     )
 
-    ros_gz_image_bridge = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
-        arguments=["/camera/image_raw"]
-    )
+    # ros_gz_image_bridge = Node(
+    #     package="ros_gz_image",
+    #     executable="image_bridge",
+    #     arguments=["/camera/image_raw"]
+    # )
 
     slam_toolbox = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -104,15 +99,14 @@ def generate_launch_description():
     # Launch everything with a single command!
     return LaunchDescription([
         rsp,
-        joystick,
-        twist_mux,
+        twist_stamper,
         world_arg,
         gazebo,
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
         ros_gz_bridge,
-        ros_gz_image_bridge,
+        # ros_gz_image_bridge,
         slam_toolbox,
         rviz2_node
     ])
