@@ -198,6 +198,11 @@ local_costmap:
       resolution: 0.05
       robot_radius: 0.22
       plugins: ["voxel_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
+      keepout_filter:
+        plugin: "nav2_costmap_2d::KeepoutFilter"
+        enabled: True
+        filter_info_topic: "/costmap_filter_info"
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
@@ -238,6 +243,11 @@ global_costmap:
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
+      keepout_filter:
+        plugin: "nav2_costmap_2d::KeepoutFilter"
+        enabled: True
+        filter_info_topic: "/costmap_filter_info"
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -468,3 +478,20 @@ loopback_simulator:
     scan_angle_max: 3.1415
     scan_angle_increment: 0.02617
     scan_use_inf: true
+
+# Keepout Zone Configure (Added)
+costmap_filter_info_server:
+  ros__parameters:
+    use_sim_time: true
+    filter_info_topic: "/costmap_filter_info"
+    type: 0                      # 0 = use as keepout/binary mask
+    mask_topic: "/keepout_filter_mask"
+    base: 0.0
+    multiplier: 1.0
+
+filter_mask_server:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: "map"
+    topic_name: "/keepout_filter_mask"
+    # yaml_filename: "../filters/keepout_mask.yaml"
