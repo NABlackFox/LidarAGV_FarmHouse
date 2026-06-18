@@ -15,6 +15,7 @@ def generate_launch_description():
 
     map_yaml_file = os.path.join(pkg_orlar_agv, 'maps', 'orlar_farm_house_map.yaml')
     rviz_config_file = os.path.join(pkg_agv_mission, 'config', 'nav2_cost_map.rviz')
+    nav2_params_file = os.path.join(pkg_agv_mission, 'config', 'nav2_params.yaml')
 
     # Launch Configurations
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
@@ -35,6 +36,7 @@ def generate_launch_description():
             'use_sim_time': use_sim_time,
             'autostart': autostart,
             'map': map_path,
+            'params_file': nav2_params_file,
         }.items()
     )
 
