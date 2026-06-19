@@ -1,0 +1,311 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <!-- North Wall -->
+    <model name="north_wall">
+      <static>true</static>
+      <pose>0 13 1.5 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>26 0.1 3</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>26 0.1 3</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South Wall -->
+    <model name="south_wall">
+      <static>true</static>
+      <pose>0 -13 1.5 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>26 0.1 3</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>26 0.1 3</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East Wall -->
+    <model name="east_wall">
+      <static>true</static>
+      <pose>13 0 1.5 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 26 3</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 26 3</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West Wall -->
+    <model name="west_wall">
+      <static>true</static>
+      <pose>-13 0 1.5 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 26 3</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 26 3</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table</name>
+      <pose>-0.11275159418303815 1.6589201950933607 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_0</name>
+      <pose>2.3972871976164725 1.6545379191506659 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_1</name>
+      <pose>4.9258664542977666 1.6631459420025168 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_2</name>
+      <pose>-0.12352197317695923 -1.6465045385335944 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_3</name>
+      <pose>2.3865111323299057 -1.6650922807992119 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_4</name>
+      <pose>4.9005146273053111 -1.6968932260699432 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_5</name>
+      <pose>-2.6459858367130806 1.6445083681654933 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_6</name>
+      <pose>-2.6470875344766212 -1.6612430875928508 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_7</name>
+      <pose>4.8569187361191393 -4.6619096821085204 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_8</name>
+      <pose>2.3542400945276718 -4.6560013739624182 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_9</name>
+      <pose>-0.17229366988419725 -4.6705466570829426 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_10</name>
+      <pose>-2.6800299501697395 -4.6364164207556104 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_11</name>
+      <pose>4.8366498572391308 4.6751340802665222 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_12</name>
+      <pose>2.3261651338422196 4.6875008249640659 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_13</name>
+      <pose>-0.17381165497024309 4.6991649590757731 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_14</name>
+      <pose>-2.6866843346515488 4.6956542085410842 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_15</name>
+      <pose>-5.2424777742034978 4.732841056171166 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_16</name>
+      <pose>-5.205340269521324 1.6294910403351253 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_17</name>
+      <pose>-5.2090954020798428 -1.6239473852019066 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>orlar_table_18</name>
+      <pose>-5.1761561664658311 -4.6120351861095052 0 0 0 0</pose>
+    </include>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
