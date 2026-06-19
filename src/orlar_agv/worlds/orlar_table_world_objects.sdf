@@ -258,137 +258,172 @@
       <self_collide>false</self_collide>
     </model>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table</name>
       <pose>-0.11275159418303815 1.6589201950933607 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_0</name>
       <pose>2.3972871976164725 1.6545379191506659 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_1</name>
       <pose>4.9258664542977666 1.6631459420025168 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_2</name>
       <pose>-0.12352197317695923 -1.6465045385335944 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_3</name>
       <pose>2.3865111323299057 -1.6650922807992119 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_4</name>
       <pose>4.9005098342895508 -1.6968899965286255 0.013218337669968605 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_5</name>
       <pose>-2.6459858367130806 1.6445083681654933 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_6</name>
       <pose>-2.6470875344766212 -1.6612430875928508 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_7</name>
       <pose>4.8569187361191393 -4.6619096821085204 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_8</name>
       <pose>2.3542400945276718 -4.6560013739624182 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_9</name>
       <pose>-0.17229366988419725 -4.6705466570829426 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_10</name>
       <pose>-2.6800299501697395 -4.6364164207556104 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_11</name>
       <pose>4.8366498572391308 4.6751340802665222 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_12</name>
       <pose>2.3261651338422196 4.6875008249640659 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_13</name>
       <pose>-0.17381165497024309 4.6991649590757731 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_14</name>
       <pose>-2.6866843346515488 4.6956542085410842 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_15</name>
       <pose>-5.2424777742034978 4.732841056171166 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_16</name>
       <pose>-5.205340269521324 1.6294910403351253 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_17</name>
       <pose>-5.2090954020798428 -1.6239473852019066 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/ros2_ws/src/orlar_agv/models/table</uri>
+      <uri>model://table</uri>
       <name>orlar_table_18</name>
       <pose>-5.1761561664658311 -4.6120351861095052 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file://<urdf-string></uri>
-      <name>my_bot</name>
-      <pose>-1.6732572291163318e-09 -5.5097297182181851e-11 0.098999904955333895 5.5653835277311588e-10 -1.6901588339756058e-08 8.4049784400703619e-18</pose>
-    </include>
-    <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/turtle/5</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
       <name>turtle</name>
       <pose>-0.20579738681108165 -1.7158005166575019 1.2049932943894315 2.4119358983269459e-08 -4.8560083421034101e-08 -0.00011416992222140765</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/turtle/5</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
       <name>turtle_0</name>
       <pose>2.4158899806855096 -1.658179997363832 1.2049984207273292 -2.9046464990490745e-08 -4.9026327470969576e-08 -1.5934267465030234e-09</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/turtle/5</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
       <name>turtle_1</name>
       <pose>4.5827016866844001 -1.6263011140129835 1.2182157587749645 -5.8057752632237439e-08 -4.1275478611423723e-09 0.89144307542393897</pose>
     </include>
+
+    <!-- Extra turtles around turtle -->
     <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/cricket ball/3</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_front_0</name>
+      <pose>0.39420261318891834 -1.7158005166575019 1.2049932943894315 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_back_0</name>
+      <pose>-0.8057973868110817 -1.7158005166575019 1.2049932943894315 0 0 0</pose>
+    </include>
+
+    <!-- Extra turtles around turtle_0 -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_front_1</name>
+      <pose>3.0158899806855097 -1.658179997363832 1.2049984207273292 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_back_1</name>
+      <pose>1.8158899806855095 -1.658179997363832 1.2049984207273292 0 0 0</pose>
+    </include>
+
+    <!-- Extra turtles around turtle_1 -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_front_2</name>
+      <pose>5.1827016866844 -1.6263011140129835 1.2182157587749645 0 0 0.89144307542393897</pose>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Turtle</uri>
+      <name>turtle_back_2</name>
+      <pose>3.9827016866844 -1.6263011140129835 1.2182157587749645 0 0 0.89144307542393897</pose>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cricket%20Ball</uri>
       <name>cricket_ball</name>
       <pose>4.8178501129198716 -4.2774801254336934 1.1399993984792376 4.7799296970925383e-09 -3.6418957877474764e-09 -8.812911088326709e-18</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/cricket ball/3</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cricket%20Ball</uri>
       <name>cricket_ball_0</name>
       <pose>2.4068999290468347 -4.3238801956131345 1.1399993984792369 7.4129237318383053e-10 -2.4640028440032738e-09 -9.9632771253468043e-19</pose>
     </include>
     <include>
-      <uri>file:///home/hungn/.gz/fuel/fuel.gazebosim.org/openrobotics/models/cricket ball/3</uri>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cricket%20Ball</uri>
       <name>cricket_ball_1</name>
       <pose>-0.17013899981975128 -4.263420104972389 1.1399993984792389 2.1544907585260518e-10 -1.4552016012973248e-09 -1.5522886891852851e-19</pose>
     </include>
