@@ -52,7 +52,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'save_dir',
-            default_value='/tmp/orlar_pictures',
+            default_value='pics/orlar_table',
             description='Directory where captured pictures are saved'
         ),
         DeclareLaunchArgument(

@@ -11,6 +11,7 @@ from nav2_msgs.action import NavigateToPose
 
 from tf_transformations import quaternion_from_euler
 from ament_index_python.packages import get_package_share_directory
+from std_srvs.srv import Trigger
 
 
 class MissionNode(Node):
@@ -36,6 +37,22 @@ class MissionNode(Node):
 
         self.get_logger().info(
             'Connected to Nav2'
+        )
+
+        # Camera service client
+        self.camera_client = self.create_client(
+            Trigger,
+            '/top_camera/take_picture'
+        )
+
+        self.get_logger().info(
+            'Waiting for camera service...'
+        )
+
+        self.camera_client.wait_for_service()
+
+        self.get_logger().info(
+            'Camera service connected'
         )
 
         # Load waypoint file
@@ -140,8 +157,43 @@ class MissionNode(Node):
     def capture_image(self, plant_id):
 
         self.get_logger().info(
-            f'[CAMERA] Capturing image at {plant_id}'
+            f'Capturing image at {plant_id}'
         )
+
+        request = Trigger.Request()
+
+        future = self.camera_client.call_async(
+            request
+        )
+
+        rclpy.spin_until_future_complete(
+            self,
+            future
+        )
+
+        result = future.result()
+
+        if result is None:
+
+            self.get_logger().error(
+                'Camera service call failed'
+            )
+
+            return False
+
+        if result.success:
+
+            self.get_logger().info(
+                f'Image saved to: {result.message}'
+            )
+
+            return True
+
+        self.get_logger().warn(
+            f'Capture failed: {result.message}'
+        )
+
+        return False
 
     def run_mission(self):
 
