@@ -7,6 +7,10 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclpy REQUIRED) 
+find_package(sensor_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(cv_bridge REQUIRED) 
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -26,6 +30,16 @@ endif()
 install(
   DIRECTORY config description launch worlds maps
   DESTINATION share/${PROJECT_NAME}
+)
+
+# ---------------------------------------------------------------------
+# Install Python nodes/scripts so they are runnable with:
+#   ros2 run orlar_agv image_capture_service.py
+# ---------------------------------------------------------------------
+install(
+  PROGRAMS
+    scripts/image_capture_service.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
