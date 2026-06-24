@@ -32,8 +32,8 @@ def generate_launch_description():
     filename_prefix = LaunchConfiguration('filename_prefix')
 
     image_capture_node = Node(
-        package='orlar_agv',
-        executable='image_capture_service.py',
+        package='camera',
+        executable='image_capture_service',
         name='image_capture_service',
         output='screen',
         parameters=[{

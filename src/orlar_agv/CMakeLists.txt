@@ -31,15 +31,4 @@ install(
   DIRECTORY config description launch worlds maps
   DESTINATION share/${PROJECT_NAME}
 )
-
-# ---------------------------------------------------------------------
-# Install Python nodes/scripts so they are runnable with:
-#   ros2 run orlar_agv image_capture_service.py
-# ---------------------------------------------------------------------
-install(
-  PROGRAMS
-    scripts/image_capture_service.py
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 ament_package()
