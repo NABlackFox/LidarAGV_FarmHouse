@@ -252,25 +252,148 @@ To save the map please input these location accordingly in the slam pannel
 
 `Serialize map:` ./src/orlar_agv/maps/orlar_farm_house_serial
 
----
-
 # Navigation with Nav2
 
-To run the navigation, use the following command
+To run the navigation stack:
+
 ```bash
-ros2 launch agv_mission nav2_test.launch.py 
+ros2 launch agv_mission nav2_test.launch.py
 ```
-### Option 1: Set Goal By GUI
-The launch file will auto run, simulation, rviz2, set initial pose, to set the goal use the `Goal 2D Pose` on the rviz2 GUI
 
-### Option 2: Set Goal Using yaml files
-change the setting in the `waypoints.yaml` or `waypoints_map.yaml` in `config` of `agv_mission` pkg then run
+### Option 1: Set Goal By GUI
+
+The launch file automatically starts:
+
+* Simulation
+* Nav2
+* RViz2
+* Initial pose setup
+
+To navigate the AGV manually, use the **Goal 2D Pose** tool in RViz2 and click on the map to send a goal.
+
+### Option 2: Set Goal Using YAML Files
+
+Edit the waypoint configuration in `agv_mission/config/waypoints.yaml` or `agv_mission/config/waypoints_map.yaml`
+
+Before running the mission node, start the image capture service:
 
 ```bash
-ros2 run agv_mission mission_node 
+ros2 launch camera image_capture.launch.py
+```
+
+Expected output:
+
+```text
+Image capture service ready.
+Subscribed to : /top_camera/image_raw
+Service       : /top_camera/take_picture (std_srvs/Trigger)
+Save directory: pics/orlar_table
+```
+
+Optionally, monitor the camera stream:
+
+```bash
+ros2 run rqt_image_view rqt_image_view
+```
+
+Then select:
+
+```text
+/top_camera/image_raw
+```
+
+from the topic list.
+
+After the camera service is running, start the mission:
+
+```bash
+ros2 run agv_mission mission_node
 ```
 
 ---
+
+## Camera Service Configuration
+
+The image capture service supports several launch parameters.
+
+Default configuration:
+
+| Parameter       | Default Value         |
+| --------------- | --------------------- |
+| image_topic     | /top_camera/image_raw |
+| save_dir        | pics/orlar_table      |
+| image_format    | png                   |
+| filename_prefix | table_capture         |
+
+### Change Save Directory
+
+```bash
+ros2 launch camera image_capture.launch.py \
+    save_dir:=/home/user/table_pictures
+```
+
+### Change Image Format
+
+```bash
+ros2 launch camera image_capture.launch.py \
+    image_format:=jpg
+```
+
+Supported formats:
+
+* png
+* jpg
+
+### Change Filename Prefix
+
+```bash
+ros2 launch camera image_capture.launch.py \
+    filename_prefix:=inspection
+```
+
+Example output file:
+
+```text
+inspection_20260624_143702.jpg
+```
+
+### Change Camera Topic
+
+```bash
+ros2 launch camera image_capture.launch.py \
+    image_topic:=/camera/image_raw
+```
+
+### Example With Multiple Parameters
+
+```bash
+ros2 launch camera image_capture.launch.py \
+    save_dir:=/home/user/table_pictures \
+    image_format:=jpg \
+    filename_prefix:=inspection
+```
+
+### Manual Image Capture
+
+The camera service exposes:
+
+```text
+/top_camera/take_picture
+```
+
+using:
+
+```text
+std_srvs/srv/Trigger
+```
+
+To manually save an image:
+
+```bash
+ros2 service call /top_camera/take_picture std_srvs/srv/Trigger "{}"
+```
+---
+
 
 # Robot Model Visualization
 
