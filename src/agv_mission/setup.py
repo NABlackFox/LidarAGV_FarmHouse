@@ -28,6 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
             'waypoint_follow = agv_mission.waypoint_follow:main',
+            'path_follow_simple_commander = agv_mission.path_follow_simple_commander:main',
             'set_init_amcl_pose = agv_mission.set_init_amcl_pose:main'
         ],
     },
