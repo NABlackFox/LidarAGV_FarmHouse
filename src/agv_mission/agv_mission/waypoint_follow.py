@@ -18,9 +18,9 @@ class MissionNode(Node):
 
     def __init__(self):
 
-        super().__init__('mission_node')
+        super().__init__('waypoint_follow')
 
-        self.get_logger().info('Starting mission node...')
+        self.get_logger().info('Starting waypoint follow mission node...')
 
         # Connect to Nav2    
         self.nav_client = ActionClient(
