@@ -257,7 +257,7 @@ To save the map please input these location accordingly in the slam pannel
 To run the navigation stack:
 
 ```bash
-ros2 launch agv_mission nav2_test.launch.py
+ros2 launch agv_mission nav2_sim.launch.py 
 ```
 
 ### Option 1: Set Goal By GUI
@@ -304,12 +304,16 @@ Then select:
 
 from the topic list.
 
-After the camera service is running, start the mission:
+After the camera service is running, start the mission, we have 2 options:
 
-```bash
-ros2 run agv_mission mission_node
-```
-
+1. Waypoints follow (global planner included)
+    ```bash
+    ros2 run agv_mission waypoint_follow
+    ```
+2. Path follow (no global planner)
+    ```bash
+    ros2 run agv_mission path_follow_simple_commander
+    ```
 ---
 
 ## Camera Service Configuration
