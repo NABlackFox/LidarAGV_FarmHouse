@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/config',glob('config/*')),
         ('share/' + package_name + '/launch',glob('launch/*.py')),
         ('share/' + package_name + '/filters',glob('filters/*')),
+        ('share/' + package_name + '/paths',glob('paths/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +30,9 @@ setup(
         'console_scripts': [
             'waypoint_follow = agv_mission.waypoint_follow:main',
             'path_follow_simple_commander = agv_mission.path_follow_simple_commander:main',
-            'set_init_amcl_pose = agv_mission.set_init_amcl_pose:main'
+            'set_init_amcl_pose = agv_mission.set_init_amcl_pose:main',
+            'pgm_path_follower = agv_mission.pgm_path_follower:main',
+            'smart_path_follow = agv_mission.smart_path_follow:main',
         ],
     },
 )
