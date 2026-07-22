@@ -5,11 +5,11 @@
 <!--═══════════════════════════════════════════
         1.  VERTICAL POLE
     ═══════════════════════════════════════════ -->
-    <xacro:property name="pole_radius"   value="0.03"/>   <!-- 3 cm diameter -->
+    <xacro:property name="pole_radius"   value="0.01"/>   <!-- 3 cm diameter -->
     <xacro:property name="pole_length"   value="2.5"/>   <!-- chassis top → arm height -->
-    <!-- pole base sits at chassis top: z_base = 0.414
-         pole centre z = 0.414 + pole_length/2 = 0.414 + 0.4085 = 0.8225 -->
-    <xacro:property name="pole_z_centre" value="${0.414 + pole_length/2}"/>
+    <!-- pole base sits at chassis top: z_base = 0.3857
+         pole centre z = 0.414 + pole_length/2 -->
+    <xacro:property name="pole_z_centre" value="${0.3857 + pole_length/2}"/>
 
     <joint name="camera_pole_joint" type="fixed">
         <parent link="chassis"/>
