@@ -1,49 +1,4 @@
 #!/usr/bin/env python3
-"""
-image_capture_service.py
-=========================
-
-Implements the "take a picture" service mechanism for the top-mounted
-table-inspection camera (see top_camera.xacro / camera_frame.xacro).
-
-Why a service instead of just using the raw image topic
----------------------------------------------------------
-The simulated/real camera continuously PUBLISHES a video stream on
-    /top_camera/image_raw          (sensor_msgs/Image)
-That is fine for live viewing, but for inspection tasks you usually want
-a single still photo taken at a specific moment (e.g. "robot has arrived
-at the table, NOW take the picture"). Streaming video is the wrong tool
-for that — you want a synchronous request/response, which is exactly
-what a ROS 2 *service* provides.
-
-This node:
-  1. Subscribes to /top_camera/image_raw and keeps only the latest frame
-     in memory (it does NOT save every frame — that would just be
-     recording video again).
-  2. Advertises a service  /top_camera/take_picture  of type
-     std_srvs/srv/Trigger.
-  3. When the service is called:
-        - grabs the most recent frame currently held in memory
-        - saves it to disk as a PNG/JPEG file (using OpenCV)
-        - returns success=True and the saved file path in the response
-          message, OR success=False with an error message if no frame
-          has been received yet.
-
-Service signature (std_srvs/srv/Trigger)
-------------------------------------------
-    Request:  (empty)
-    Response:
-        bool    success
-        string  message      # contains the saved file path on success
-
-Usage
------
-    ros2 run orlar_agv image_capture_service.py
-        --ros-args -p save_dir:=/tmp/orlar_pictures -p image_format:=png
-
-    # In another terminal, trigger a capture:
-    ros2 service call /top_camera/take_picture std_srvs/srv/Trigger {}
-"""
 
 import os
 import time
