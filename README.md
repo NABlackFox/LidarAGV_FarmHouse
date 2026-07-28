@@ -107,6 +107,12 @@ source ~/.bashrc
 
 # Build Instructions
 
+Ensure all Python nodes across all packages have execution permissions:
+
+```bash
+find src/ -type f -name "*.py" -exec chmod +x {} +
+```
+
 Navigate to the workspace root:
 
 ```bash
