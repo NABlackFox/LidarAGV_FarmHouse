@@ -1,0 +1,25 @@
+home:
+  x: 0.0
+  y: 0.0
+  yaw: 0.0
+inspection_points:
+- id: point_1
+  x: 6.39
+  y: -0.05
+  yaw: 0.0018
+- id: point_2
+  x: 6.29
+  y: 3.23
+  yaw: -3.1236
+- id: point_3
+  x: -6.34
+  y: 3.28
+  yaw: 3.1334
+- id: point_4
+  x: -6.33
+  y: 6.58
+  yaw: -0.032
+- id: point_5
+  x: 6.1
+  y: 6.51
+  yaw: -0.0082

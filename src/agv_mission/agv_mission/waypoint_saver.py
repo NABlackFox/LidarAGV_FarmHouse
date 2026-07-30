@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from pathlib import Path
 import yaml
 import rclpy
 from rclpy.node import Node
@@ -35,16 +36,24 @@ class WaypointSaver(Node):
 
     def save_to_yaml(self):
         if not self.waypoints:
+            self.get_logger().warn('No waypoints captured, skipping save.')
             return
         
+        # Target path relative to terminal execution directory
+        file_path = Path('temp/waypoint_test.yaml')
+        
+        # Ensures the 'temp' folder exists inside your current terminal folder
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
         # Format matching your mission node structure
         data = {
             'home': {'x': 0.0, 'y': 0.0, 'yaw': 0.0},
             'inspection_points': self.waypoints
         }
-        with open('waypoints_map.yaml', 'w') as f:
+        with open(file_path, 'w') as f:
             yaml.dump(data, f, default_flow_style=False, sort_keys=False)
-        self.get_logger().info('Successfully saved waypoints_map.yaml!')
+            
+        self.get_logger().info(f'Successfully saved {file_path.resolve()}!')
 
 def main():
     rclpy.init()
