@@ -9,9 +9,10 @@ from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from tf_transformations import quaternion_from_euler
 from ament_index_python.packages import get_package_share_directory
+from std_srvs.srv import SetBool
 
 
-class MissionNode(Node):
+class PathFollow(Node):
 
     def __init__(self):
         super().__init__('path_follow')
@@ -20,6 +21,16 @@ class MissionNode(Node):
 
         # Instantiate Nav2 Simple Commander Navigator
         self.navigator = BasicNavigator()
+
+        # Camera state service client
+        self.camera_client = self.create_client(
+            SetBool,
+            '/camera/enable_recording'
+        )
+
+        self.get_logger().info('Waiting for interval camera recording service...')
+        self.camera_client.wait_for_service()
+        self.get_logger().info('Interval camera service connected!')
 
         # Load waypoint file
         self.load_waypoints()
@@ -67,6 +78,31 @@ class MissionNode(Node):
 
         return pose
 
+    def set_camera_state(self, state_str):
+        """Calls the camera service and waits until it confirms the state change."""
+        # Convert whatever type YAML gave us (bool, string, etc.) into a lowercase string
+        state_str = str(state_str).lower()
+        enable = (state_str == 'on')
+        
+        self.get_logger().info(f'Waiting for camera state change to: {state_str.upper()}...')
+
+        request = SetBool.Request()
+        request.data = enable
+
+        future = self.camera_client.call_async(request)
+        
+        # Block and spin until the camera service finishes responding
+        while not future.done():
+            rclpy.spin_once(self, timeout_sec=0.1)
+
+        result = future.result()
+        if result and result.success:
+            self.get_logger().info(f'Camera successfully set to {state_str.upper()}')
+            return True
+        else:
+            self.get_logger().error(f'Failed to change camera state to {state_str.upper()}')
+            return False
+
     def follow_path_to_target(self, target_x, target_y, target_yaw, target_name="Target"):
         goal_pose = self.create_pose_stamped(target_x, target_y, target_yaw)
 
@@ -87,7 +123,7 @@ class MissionNode(Node):
 
         # 3. Follow the generated path
         self.get_logger().info(f'Executing path to {target_name}...')
-        follow_task = self.navigator.followPath(smoothed_path)
+        self.navigator.followPath(smoothed_path)
 
         # Non-blocking spin loop while waiting for execution
         while not self.navigator.isTaskComplete():
@@ -109,9 +145,18 @@ class MissionNode(Node):
         return False
 
     def run_mission(self):
+        # Ensure camera is off at mission start
+        self.set_camera_state('off')
+
         # Visit every waypoint via path following
         for point in self.points:
             point_id = point.get('id', 'Inspection Point')
+            camera_setting = point.get('camera', 'off')
+
+            # Set camera state (on/off) and wait for confirmation BEFORE starting path
+            if not self.set_camera_state(camera_setting):
+                self.get_logger().error('Mission aborted due to camera service failure.')
+                return
 
             success = self.follow_path_to_target(
                 point['x'],
@@ -122,7 +167,11 @@ class MissionNode(Node):
 
             if not success:
                 self.get_logger().error('Mission aborted due to path following failure.')
+                self.set_camera_state('off')
                 return
+
+        # Turn camera off before returning home
+        self.set_camera_state('off')
 
         # Return home
         self.get_logger().info('Returning home...')
@@ -141,7 +190,7 @@ class MissionNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MissionNode()
+    node = PathFollow()
 
     # Clean shutdown of Nav2 lifecycle
     node.navigator.lifecycleShutdown()
