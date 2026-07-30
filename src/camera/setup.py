@@ -26,7 +26,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'image_capture_service = camera.image_capture_service:main'
+            'image_capture_service = camera.image_capture_service:main',
+            'interval_image_capture_service = camera.interval_image_capture_service:main',
         ],
     },
 )
