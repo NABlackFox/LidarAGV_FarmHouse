@@ -8,7 +8,6 @@ def generate_launch_description():
     image_topic = LaunchConfiguration('image_topic')
     save_dir = LaunchConfiguration('save_dir')
     image_format = LaunchConfiguration('image_format')
-    filename_prefix = LaunchConfiguration('filename_prefix')
     capture_interval = LaunchConfiguration('capture_interval')
 
     interval_image_capture_node = Node(
@@ -20,7 +19,6 @@ def generate_launch_description():
             'image_topic': image_topic,
             'save_dir': save_dir,
             'image_format': image_format,
-            'filename_prefix': filename_prefix,
             'capture_interval': capture_interval,
         }]
     )
@@ -40,11 +38,6 @@ def generate_launch_description():
             'image_format',
             default_value='png',
             description="Image file format: 'png' or 'jpg'"
-        ),
-        DeclareLaunchArgument(
-            'filename_prefix',
-            default_value='interval_capture',
-            description='Filename prefix'
         ),
         DeclareLaunchArgument(
             'capture_interval',
