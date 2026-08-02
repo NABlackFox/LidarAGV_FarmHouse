@@ -1,0 +1,7 @@
+# Request
+bool enable
+string table_id
+---
+# Response
+bool success
+string message
