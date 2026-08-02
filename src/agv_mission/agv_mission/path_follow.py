@@ -9,7 +9,9 @@ from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from tf_transformations import quaternion_from_euler
 from ament_index_python.packages import get_package_share_directory
-from std_srvs.srv import SetBool
+
+# Custom Service import
+from custom_interfaces.srv import SetCameraState
 
 
 class PathFollow(Node):
@@ -19,33 +21,31 @@ class PathFollow(Node):
 
         self.get_logger().info('Starting path follow mission node...')
 
-        # Instantiate Nav2 Simple Commander Navigator
+        # Navigator
         self.navigator = BasicNavigator()
 
-        # Camera state service client
+        # Camera state client
         self.camera_client = self.create_client(
-            SetBool,
-            '/camera/enable_recording'
+            SetCameraState,
+            '/camera/set_state'
         )
 
-        self.get_logger().info('Waiting for interval camera recording service...')
+        self.get_logger().info('Waiting for camera service...')
         self.camera_client.wait_for_service()
-        self.get_logger().info('Interval camera service connected!')
+        self.get_logger().info('Camera service connected!')
 
-        # Load waypoint file
+        # Load waypoints
         self.load_waypoints()
 
-        # Wait for Nav2 to activate
+        # Wait for Nav2
         self.get_logger().info('Waiting for Nav2 to activate...')
         self.navigator.waitUntilNav2Active()
-        self.get_logger().info('Nav2 is active and ready!')
+        self.get_logger().info('Nav2 active!')
 
-        # Set initial starting pose from home location
         self.current_start_pose = self.create_pose_stamped(
             self.home['x'], self.home['y'], self.home['yaw']
         )
 
-        # Start mission
         self.run_mission()
 
     def load_waypoints(self):
@@ -58,15 +58,10 @@ class PathFollow(Node):
         self.home = data['home']
         self.points = data['inspection_points']
 
-        self.get_logger().info(
-            f'Loaded {len(self.points)} inspection points'
-        )
-
     def create_pose_stamped(self, x, y, yaw):
         pose = PoseStamped()
         pose.header.frame_id = 'map'
         pose.header.stamp = self.get_clock().now().to_msg()
-
         pose.pose.position.x = float(x)
         pose.pose.position.y = float(y)
 
@@ -78,121 +73,83 @@ class PathFollow(Node):
 
         return pose
 
-    def set_camera_state(self, state_str):
-        """Calls the camera service and waits until it confirms the state change."""
-        # Convert whatever type YAML gave us (bool, string, etc.) into a lowercase string
+    def set_camera_state(self, state_str, table_id="NONE"):
+        """Calls camera service with boolean enable and table_id string."""
         state_str = str(state_str).lower()
         enable = (state_str == 'on')
-        
-        self.get_logger().info(f'Waiting for camera state change to: {state_str.upper()}...')
 
-        request = SetBool.Request()
-        request.data = enable
+        request = SetCameraState.Request()
+        request.enable = enable
+        request.table_id = str(table_id)
 
         future = self.camera_client.call_async(request)
         
-        # Block and spin until the camera service finishes responding
         while not future.done():
             rclpy.spin_once(self, timeout_sec=0.1)
 
         result = future.result()
         if result and result.success:
-            self.get_logger().info(f'Camera successfully set to {state_str.upper()}')
+            self.get_logger().info(f'Camera set to {state_str.upper()} [ID: {table_id}]')
             return True
         else:
-            self.get_logger().error(f'Failed to change camera state to {state_str.upper()}')
+            self.get_logger().error(f'Failed setting camera state for {table_id}')
             return False
 
     def follow_path_to_target(self, target_x, target_y, target_yaw, target_name="Target"):
         goal_pose = self.create_pose_stamped(target_x, target_y, target_yaw)
 
-        # Print the upcoming destination
-        self.get_logger().info(
-            f'Upcoming path destination: [{target_name}] at ({target_x:.2f}, {target_y:.2f}, yaw={target_yaw:.2f})'
-        )
-
-        # 1. Generate path from current location to goal
         path = self.navigator.getPath(self.current_start_pose, goal_pose)
-
         if not path or len(path.poses) == 0:
             self.get_logger().error(f'Failed to generate path to {target_name}!')
             return False
 
-        # 2. Smooth path
         smoothed_path = self.navigator.smoothPath(path)
-
-        # 3. Follow the generated path
-        self.get_logger().info(f'Executing path to {target_name}...')
         self.navigator.followPath(smoothed_path)
 
-        # Non-blocking spin loop while waiting for execution
         while not self.navigator.isTaskComplete():
             rclpy.spin_once(self, timeout_sec=0.1)
 
         result = self.navigator.getResult()
-
         if result == TaskResult.SUCCEEDED:
-            self.get_logger().info(f'Successfully reached {target_name}!')
-            # Update current pose for the next path start
             self.current_start_pose = goal_pose
             return True
-        elif result == TaskResult.CANCELED:
-            self.get_logger().warn(f'Path to {target_name} was canceled!')
-        else:
-            (error_code, error_msg) = self.navigator.getTaskError()
-            self.get_logger().error(f'Path execution failed! Code {error_code}: {error_msg}')
 
         return False
 
     def run_mission(self):
-        # Ensure camera is off at mission start
-        self.set_camera_state('off')
+        # Initial state off
+        self.set_camera_state('off', 'INITIAL')
 
-        # Visit every waypoint via path following
         for point in self.points:
-            point_id = point.get('id', 'Inspection Point')
+            point_id = point.get('id', 'Table_Unknown')
             camera_setting = point.get('camera', 'off')
 
-            # Set camera state (on/off) and wait for confirmation BEFORE starting path
-            if not self.set_camera_state(camera_setting):
+            # Enable camera pass ID before traversing path
+            if not self.set_camera_state(camera_setting, table_id=point_id):
                 self.get_logger().error('Mission aborted due to camera service failure.')
                 return
 
             success = self.follow_path_to_target(
-                point['x'],
-                point['y'],
-                point['yaw'],
-                target_name=point_id
+                point['x'], point['y'], point['yaw'], target_name=point_id
             )
 
             if not success:
-                self.get_logger().error('Mission aborted due to path following failure.')
-                self.set_camera_state('off')
+                self.get_logger().error('Mission aborted due to navigation failure.')
+                self.set_camera_state('off', point_id)
                 return
 
-        # Turn camera off before returning home
-        self.set_camera_state('off')
+        # Turn camera off before going home
+        self.set_camera_state('off', 'RETURNING_HOME')
 
-        # Return home
         self.get_logger().info('Returning home...')
-        success = self.follow_path_to_target(
-            self.home['x'],
-            self.home['y'],
-            self.home['yaw'],
-            target_name="Home Base"
+        self.follow_path_to_target(
+            self.home['x'], self.home['y'], self.home['yaw'], target_name="Home"
         )
-
-        if success:
-            self.get_logger().info('Mission complete!')
-        else:
-            self.get_logger().error('Failed to return home.')
 
 
 def main(args=None):
     rclpy.init(args=args)
     node = PathFollow()
-
-    # Clean shutdown of Nav2 lifecycle
     node.navigator.lifecycleShutdown()
     node.destroy_node()
     rclpy.shutdown()
