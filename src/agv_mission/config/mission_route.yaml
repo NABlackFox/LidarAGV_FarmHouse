@@ -1,0 +1,24 @@
+home:
+  node_id: 0
+
+inspection_points:
+- id: table_1
+  start_id: 0
+  end_id: 1
+  camera: "on"
+- id: move_to_table_2
+  start_id: 1
+  end_id: 3
+  camera: "off"
+- id: table_2
+  start_id: 3
+  end_id: 4
+  camera: "on"
+- id: move_to_table_3
+  start_id: 4
+  end_id: 6
+  camera: "off"
+- id: table_3
+  start_id: 6
+  end_id: 7
+  camera: "on"
