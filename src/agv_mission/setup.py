@@ -31,6 +31,7 @@ setup(
             'set_init_amcl_pose = agv_mission.set_init_amcl_pose:main',
             'path_follow = agv_mission.path_follow:main',
             'waypoint_saver = agv_mission.waypoint_saver:main',
+            'route_follow = agv_mission.route_follow:main'
         ],
     },
 )
