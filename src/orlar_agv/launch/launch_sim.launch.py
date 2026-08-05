@@ -32,7 +32,7 @@ def generate_launch_description():
     default_world = os.path.join(
         get_package_share_directory(package_name),
         'worlds',
-        'orlar_table_world_objects.sdf'
+        'orlar_table_new_layout.sdf'
     )    
     
     world = LaunchConfiguration('world')
@@ -52,10 +52,12 @@ def generate_launch_description():
 
     # Run the spawner node from the ros_gz_sim package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='ros_gz_sim', executable='create',
-                        arguments=['-topic', 'robot_description',
-                                   '-name', 'my_bot',
-                                   '-z', '0.1'],
-                        output='screen')
+                    arguments=['-topic', 'robot_description',
+                               '-name', 'my_bot',
+                               '-x', '-9.0',
+                               '-y', '-3.0',
+                               '-z', '0.1'],
+                    output='screen')
 
 
     diff_drive_spawner = Node(

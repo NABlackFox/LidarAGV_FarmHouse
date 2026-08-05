@@ -1,0 +1,190 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>5.5645e-06 2.28758e-05 -4.23884e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Boundary walls, 26m x 26m room, same as orlar_table_world.sdf -->
+    <model name="north_wall">
+      <static>true</static>
+      <pose>0 13 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>26 0.1 3</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>26 0.1 3</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="south_wall">
+      <static>true</static>
+      <pose>0 -13 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>26 0.1 3</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>26 0.1 3</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="east_wall">
+      <static>true</static>
+      <pose>13 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 26 3</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 26 3</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="west_wall">
+      <static>true</static>
+      <pose>-13 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 26 3</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 26 3</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse><specular>0.8 0.8 0.8 1</specular></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════
+         4 rows of the new ORLAR table (~4.05 x 0.96 x 1.27 m),
+         spaced 3m apart in Y — same spacing convention as the
+         original grid world, just one long table per row instead
+         of five short ones.
+         Mesh origin is a CORNER (not centered), so pose values
+         below are offset by half the table's length/width to make
+         it appear centered on the intended row line.
+         ═══════════════════════════════════════════ -->
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row1_1</name>
+      <pose>-8.2400 -3.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row1_2</name>
+      <pose>-4.0950 -3.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row1_3</name>
+      <pose>0.0500 -3.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row1_4</name>
+      <pose>4.1950 -3.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row2_1</name>
+      <pose>-8.2400 -0.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row2_2</name>
+      <pose>-4.0950 -0.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row2_3</name>
+      <pose>0.0500 -0.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row2_4</name>
+      <pose>4.1950 -0.865 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row3_1</name>
+      <pose>-8.2400 2.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row3_2</name>
+      <pose>-4.0950 2.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row3_3</name>
+      <pose>0.0500 2.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row3_4</name>
+      <pose>4.1950 2.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row4_1</name>
+      <pose>-8.2400 5.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row4_2</name>
+      <pose>-4.0950 5.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row4_3</name>
+      <pose>0.0500 5.135 0 1.5708 0 0</pose>
+    </include>
+    <include>
+      <uri>model://orlar_table</uri>
+      <name>orlar_table_row4_4</name>
+      <pose>4.1950 5.135 0 1.5708 0 0</pose>
+    </include>
+
+
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.1 -0.9</direction>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.9</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot><inner_angle>0</inner_angle><outer_angle>0</outer_angle><falloff>0</falloff></spot>
+    </light>
+  </world>
+</sdf>

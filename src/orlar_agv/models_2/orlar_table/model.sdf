@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="orlar_table">
+    <!--
+      Static = true: fine for furniture/environment props that don't need to
+      move or be pushed around. If you need it to behave as a dynamic rigid
+      body (e.g. it can be knocked over, or a robot arm interacts with it),
+      set this to false and fill in a real <inertial> block below.
+    -->
+    <static>true</static>
+
+    <link name="link">
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://orlar_table/meshes/ORLAR_TABLE_LAST_METER_VER.STL</uri>
+            <!-- Source mesh is in millimeters; this scales it to meters -->
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.55 0.4 0.25 1</ambient>
+          <diffuse>0.55 0.4 0.25 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://orlar_table/meshes/ORLAR_TABLE_LAST_METER_VER.STL</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <!--
+        If you switch <static> to false, uncomment and tune this block.
+        Mass below assumes steel (density ~7850 kg/m^3) at the mesh's
+        actual solid volume (~0.498 m^3) -> ~3910 kg, which is almost
+        certainly too heavy (real frames are hollow/thin-wall, not solid).
+        Replace `mass` with the real weight of your table, and use the
+        bounding-box inertia approximation (l=4.045, w=0.96, h=1.27 m):
+          Ixx = (m/12) * (w^2 + h^2)
+          Iyy = (m/12) * (l^2 + h^2)
+          Izz = (m/12) * (l^2 + w^2)
+
+      <inertial>
+        <mass>50.0</mass>
+        <inertia>
+          <ixx>7.68</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>18.32</iyy>
+          <iyz>0.0</iyz>
+          <izz>11.05</izz>
+        </inertia>
+      </inertial>
+      -->
+
+    </link>
+  </model>
+</sdf>
