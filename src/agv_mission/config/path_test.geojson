@@ -1,217 +1,110 @@
 {
-
     "crs": {
-
         "properties": {
-
             "name": "urn:ogc:def:crs:EPSG::3857"
-
         },
-
         "type": "name"
-
     },
-
     "features": [
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     0.0,
-
                     0.0
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 0
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     6.127071857452393,
-
                     -0.06488800048828125
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 1
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     7.4918060302734375,
-
                     1.6496989727020264
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 2
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     6.109062194824219,
-
                     3.3351290225982666
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 3
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     -6.46998405456543,
-
                     3.4185190200805664
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 4
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     -7.725326061248779,
-
                     4.868037223815918
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 5
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
-
                 "coordinates": [
-
                     -6.258635997772217,
-
                     6.041110992431641
-
                 ],
-
                 "type": "Point"
-
             },
-
             "properties": {
-
                 "frame": "map",
-
                 "id": 6
-
             },
-
             "type": "Feature"
-
         },
-
         {
-
             "geometry": {
                 "coordinates": [
                     6.11494779586792,
@@ -289,7 +182,6 @@
                 "startid": 4
             },
             "type": "Feature"
-
         },
         {
             "geometry": {
@@ -303,7 +195,6 @@
                 "startid": 5
             },
             "type": "Feature"
-
         },
         {
             "geometry": {
@@ -321,5 +212,4 @@
     ],
     "name": "graph",
     "type": "FeatureCollection"
-
 }
