@@ -34,7 +34,7 @@ class RouteFollower(Node):
 
     def load_mission_routes(self):
         pkg_path = get_package_share_directory('agv_mission')
-        yaml_file = os.path.join(pkg_path, 'config', 'mission_route.yaml')
+        yaml_file = os.path.join(pkg_path, 'paths', 'mission_route.yaml')
         with open(yaml_file, 'r') as file:
             data = yaml.safe_load(file)
         self.home = data['home']

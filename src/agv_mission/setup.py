@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/config',glob('config/*')),
         ('share/' + package_name + '/launch',glob('launch/*.py')),
         ('share/' + package_name + '/filters',glob('filters/*')),
+        ('share/' + package_name + '/filters',glob('paths/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
