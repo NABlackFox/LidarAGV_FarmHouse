@@ -32,7 +32,7 @@ def generate_launch_description():
                         ('/cmd_vel_out','/diff_cont/cmd_vel')] # ros2_control diff consume the /diff_cont/cmd_vel topic (stamped)
         )
 
-    default_world = os.path.join(pkg_orlar_agv, 'worlds', 'orlar_table_world.sdf')    
+    default_world = os.path.join(pkg_orlar_agv, 'worlds', 'orlar_table_new_layout.sdf')    
     world = LaunchConfiguration('world')
 
     world_arg = DeclareLaunchArgument(
@@ -46,11 +46,13 @@ def generate_launch_description():
         launch_arguments={'gz_args': ['-r -v4 ', world], 'on_exit_shutdown': 'true'}.items()
     )
 
-    spawn_entity = Node(
-        package='ros_gz_sim', executable='create',
-        arguments=['-topic', 'robot_description', '-name', 'my_bot', '-z', '0.7'],
-        output='screen'
-    )
+    spawn_entity = Node(package='ros_gz_sim', executable='create',
+                        arguments=['-topic', 'robot_description',
+                                   '-name', 'my_bot',
+                                   '-x', '-9.0',
+                                   '-y', '-3.0',
+                                   '-z', '0.1'],
+                        output='screen')
 
     diff_drive_spawner = Node(
         package="controller_manager",
