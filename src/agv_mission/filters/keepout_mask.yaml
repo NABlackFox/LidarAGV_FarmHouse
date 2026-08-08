@@ -1,7 +1,7 @@
 image: keepout_mask.pgm
 mode: trinary
-resolution: 0.05
-origin: [-13.086, -13.049, 0.0]
+resolution: 0.050
+origin: [-1.342, -4.242, 0]
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196

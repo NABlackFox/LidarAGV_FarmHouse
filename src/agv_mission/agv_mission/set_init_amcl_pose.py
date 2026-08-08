@@ -20,9 +20,9 @@ class SetInitialPose(Node):
         super().__init__('set_init_amcl_pose')
         
         # Declare parameters with default values
-        self.declare_parameter('x', 0.0)
-        self.declare_parameter('y', 0.0)
-        self.declare_parameter('theta', 0.0) 
+        self.declare_parameter('x', -9.0)
+        self.declare_parameter('y', -3.0)
+        self.declare_parameter('theta', 0.1) 
         self.declare_parameter('cov', 0.5**2)
         
         # Create publisher
