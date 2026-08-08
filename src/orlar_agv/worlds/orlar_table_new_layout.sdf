@@ -38,191 +38,164 @@
       </link>
     </model>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         INNER BOUNDARY WALLS (1.6m clearance with 1.6m robot hallways)
-         ════════════════════════════════════════════════════════════════ -->
+    <!-- SURROUNDING WALLS -->
+    <model name='surrounding_walls'>
+      <!-- CAMERA VIEW ORIENTATION GUIDE:
+           Pose syntax: <pose>X Y Z Roll Pitch Yaw</pose>
+           - X controls UP / DOWN on screen (+X = Up, -X = Down)
+           - Y controls LEFT / RIGHT on screen (+Y = Right, -Y = Left)
+      -->
+      <pose>2.0 -1.8 0 0 0 0</pose>
 
-    <!-- NORTH WALL (Y = +6.74m, 1.6m center gap) -->
-    <model name="north_wall_left">
       <static>true</static>
-      <pose>-5.32 6.74 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>9.04 0.1 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>9.04 0.1 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+          
+      <!-- Side Wall (Right) -->
+      <link name='wall_north'>
+        <pose>-2.02 7.40 1.25 0 0 0</pose>
+        <collision name='collision'>
+          <geometry><box><size>20.64 0.2 2.5</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>20.64 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
         </visual>
       </link>
-    </model>
-    <model name="north_wall_right">
-      <static>true</static>
-      <pose>5.32 6.74 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>9.04 0.1 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>9.04 0.1 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
 
-    <!-- SOUTH WALL (Y = -6.74m, 1.6m center gap) -->
-    <model name="south_wall_left">
-      <static>true</static>
-      <pose>-5.32 -6.74 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>9.04 0.1 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>9.04 0.1 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+      <!-- Side Wall (Left) -->
+      <link name='wall_south'>
+        <pose>-2.02 -5.04 1.25 0 0 0</pose>
+        <collision name='collision'>
+          <geometry><box><size>20.64 0.2 2.5</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>20.64 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
         </visual>
       </link>
-    </model>
-    <model name="south_wall_right">
-      <static>true</static>
-      <pose>5.32 -6.74 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>9.04 0.1 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>9.04 0.1 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
 
-    <!-- EAST WALL (X = +9.84m, 1.6m center gap) -->
-    <model name="east_wall_bottom">
-      <static>true</static>
-      <pose>9.84 -3.77 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.1 5.94 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.1 5.94 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+      <!-- Top Wall (Pulled back inward by 0.5m) -->
+      <link name='wall_east'>
+        <pose>8.20 1.18 1.25 0 0 0</pose>
+        <collision name='collision'>
+          <geometry><box><size>0.2 12.24 2.5</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>0.2 12.24 2.5</size></box></geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
         </visual>
       </link>
-    </model>
-    <model name="east_wall_top">
-      <static>true</static>
-      <pose>9.84 3.77 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.1 5.94 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.1 5.94 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+
+      <!-- Bottom Wall (Pulled back inward by 0.5m) -->
+      <link name='wall_west'>
+        <pose>-12.24 1.18 1.25 0 0 0</pose>
+        <collision name='collision'>
+          <geometry><box><size>0.2 12.24 2.5</size></box></geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry><box><size>0.2 12.24 2.5</size></box></geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- WEST WALL (X = -9.84m, 1.6m center gap) -->
-    <model name="west_wall_bottom">
-      <static>true</static>
-      <pose>-9.84 -3.77 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.1 5.94 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.1 5.94 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-    <model name="west_wall_top">
-      <static>true</static>
-      <pose>-9.84 3.77 1.5 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.1 5.94 3</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.1 5.94 3</size></box></geometry>
-          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <!-- ════════════════════════════════════════════════════════════════
-         TABLE GRID (4 Rows x 4 Columns)
-         ════════════════════════════════════════════════════════════════ -->
+    <!-- ROW 1 -->
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row1_1</name>
-      <pose>-8.2400 -3.865 0 1.5708 0 0</pose>
+      <pose>-8.2400 -3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row1_2</name>
-      <pose>-4.0950 -3.865 0 1.5708 0 0</pose>
+      <pose>-4.0950 -3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row1_3</name>
-      <pose>0.0500 -3.865 0 1.5708 0 0</pose>
+      <pose>0.0500 -3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row1_4</name>
-      <pose>4.1950 -3.865 0 1.5708 0 0</pose>
+      <pose>4.1950 -3.5400 0 1.5708 0 0</pose>
     </include>
 
+    <!-- ROW 2 -->
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row2_1</name>
-      <pose>-8.2400 -0.865 0 1.5708 0 0</pose>
+      <pose>-8.2400 -1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row2_2</name>
-      <pose>-4.0950 -0.865 0 1.5708 0 0</pose>
+      <pose>-4.0950 -1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row2_3</name>
-      <pose>0.0500 -0.865 0 1.5708 0 0</pose>
+      <pose>0.0500 -1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row2_4</name>
-      <pose>4.1950 -0.865 0 1.5708 0 0</pose>
+      <pose>4.1950 -1.1800 0 1.5708 0 0</pose>
     </include>
 
+    <!-- ROW 3 -->
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row3_1</name>
-      <pose>-8.2400 2.135 0 1.5708 0 0</pose>
+      <pose>-8.2400 1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row3_2</name>
-      <pose>-4.0950 2.135 0 1.5708 0 0</pose>
+      <pose>-4.0950 1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row3_3</name>
-      <pose>0.0500 2.135 0 1.5708 0 0</pose>
+      <pose>0.0500 1.1800 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row3_4</name>
-      <pose>4.1950 2.135 0 1.5708 0 0</pose>
+      <pose>4.1950 1.1800 0 1.5708 0 0</pose>
     </include>
 
+    <!-- ROW 4 -->
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row4_1</name>
-      <pose>-8.2400 5.135 0 1.5708 0 0</pose>
+      <pose>-8.2400 3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row4_2</name>
-      <pose>-4.0950 5.135 0 1.5708 0 0</pose>
+      <pose>-4.0950 3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row4_3</name>
-      <pose>0.0500 5.135 0 1.5708 0 0</pose>
+      <pose>0.0500 3.5400 0 1.5708 0 0</pose>
     </include>
     <include>
       <uri>model://orlar_table</uri>
       <name>orlar_table_row4_4</name>
-      <pose>4.1950 5.135 0 1.5708 0 0</pose>
+      <pose>4.1950 3.5400 0 1.5708 0 0</pose>
     </include>
 
     <!-- LIGHT SOURCE -->
