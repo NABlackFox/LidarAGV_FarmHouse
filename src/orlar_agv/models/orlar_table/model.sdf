@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.7">
-  <model name="orlar_table">
+  <model name="orlar_table_v2">
     <!--
       Static = true: fine for furniture/environment props that don't need to
       move or be pushed around. If you need it to behave as a dynamic rigid
