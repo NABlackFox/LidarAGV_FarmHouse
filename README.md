@@ -258,6 +258,62 @@ To save the map please input these location accordingly in the slam pannel
 
 `Serialize map:` ./src/orlar_agv/maps/orlar_farm_house_serial
 
+# Creating a Route with RViz
+
+The AGV moves only along predefined paths, using the route server to search for and navigate a route. To create a route, use the `Nav2 Route Tool`, replacing the file path with the path to the map saved in the previous section:
+
+```bash
+ros2 launch nav2_rviz_plugins route_tool.launch.py yaml_filename:=/path/to/map.yaml
+```
+
+After launching, you should see the RViz window below:
+
+![Route Tool Rviz Window Example](docs/route_tool_rviz_window_example.png)
+
+The route server uses graph-based navigation, made up of nodes and edges. To create a path, you need at least two nodes and one edge connecting them. Each edge is directional, so to create a bidirectional path, you need to add a second edge in the opposite direction. For example, given two nodes A and B, the first edge would be A → B, and the second edge would be B → A.
+
+## Loading an Existing Path
+
+To load an existing path, open the `Route Tool` panel, click `Load`, then select a path file with the `.geojson` extension. For example:
+
+![path_example](docs/path_example.png)
+
+## Creating a Node
+
+Click the `Publish Point` button on the top navigation bar:
+
+![publish_point_icon_location](docs/publish_point_icon_location.png)
+
+Click on the position where you want to create a node. The `Route Tool` panel will appear in the bottom left — make sure it shows `Add`, `Node`, then click `Create`:
+
+![route_tool_add_node](docs/route_tool_add_node.png)
+
+The new point will appear in RViz along with its ID:
+
+![nodes_example](docs/nodes_example.png)
+
+## Creating an Edge
+
+Create a second node using the same steps above. Next, add an edge to form a path for the route server. In the `Route Tool` panel, switch to `Add`, `Edge`, then enter the direction of the edge:
+
+![route_tool_add_edge](docs/route_tool_add_edge.png)
+
+The new edge will appear in green, along with its ID:
+
+![directional_edge](docs/directional_edge.png)
+
+To create a bidirectional path, repeat the same steps in reverse order:
+
+![route_tool_add_second_edge.png](docs/route_tool_add_second_edge.png)
+
+You now have a bidirectional pathway formed by two edges in opposite directions:
+
+![bidirection_edge](docs/bidirection_edge.png)
+
+## Editing or Removing Nodes and Edges
+
+To `Edit` or `Remove` a node or edge, switch to the corresponding tab in the `Route Tool` panel and enter the ID of the node or edge you want to change. Then enter the new position (for a node) or new direction (for an edge).
+
 # Navigation with Nav2
 
 To run the navigation stack:
