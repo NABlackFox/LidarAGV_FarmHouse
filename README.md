@@ -314,6 +314,9 @@ You now have a bidirectional pathway formed by two edges in opposite directions:
 
 To `Edit` or `Remove` a node or edge, switch to the corresponding tab in the `Route Tool` panel and enter the ID of the node or edge you want to change. Then enter the new position (for a node) or new direction (for an edge).
 
+# Setup for Route Follow Mission
+
+
 # Navigation with Nav2
 
 To run the navigation stack:
@@ -322,25 +325,11 @@ To run the navigation stack:
 ros2 launch agv_mission nav2_sim.launch.py 
 ```
 
-### Option 1: Set Goal By GUI
-
-The launch file automatically starts:
-
-* Simulation
-* Nav2
-* RViz2
-* Initial pose setup
-
-To navigate the AGV manually, use the **Goal 2D Pose** tool in RViz2 and click on the map to send a goal.
-
-### Option 2: Set Goal Using YAML Files
-
-Edit the waypoint configuration in `agv_mission/config/waypoints.yaml` or `agv_mission/config/waypoints_map.yaml`
 
 Before running the mission node, start the image capture service:
 
 ```bash
-ros2 launch camera image_capture.launch.py
+ros2 launch camera interval_image_capture.launch.py
 ```
 
 Expected output:
@@ -366,17 +355,6 @@ Then select:
 
 from the topic list.
 
-After the camera service is running, start the mission, we have 2 options:
-
-1. Waypoints follow (global planner included)
-    ```bash
-    ros2 run agv_mission waypoint_follow
-    ```
-2. Path follow (no global planner)
-    ```bash
-    ros2 run agv_mission path_follow_simple_commander
-    ```
----
 
 ## Camera Service Configuration
 
@@ -406,22 +384,8 @@ ros2 launch camera image_capture.launch.py \
 ```
 
 Supported formats:
-
 * png
 * jpg
-
-### Change Filename Prefix
-
-```bash
-ros2 launch camera image_capture.launch.py \
-    filename_prefix:=inspection
-```
-
-Example output file:
-
-```text
-inspection_20260624_143702.jpg
-```
 
 ### Change Camera Topic
 
@@ -438,28 +402,6 @@ ros2 launch camera image_capture.launch.py \
     image_format:=jpg \
     filename_prefix:=inspection
 ```
-
-### Manual Image Capture
-
-The camera service exposes:
-
-```text
-/top_camera/take_picture
-```
-
-using:
-
-```text
-std_srvs/srv/Trigger
-```
-
-To manually save an image:
-
-```bash
-ros2 service call /top_camera/take_picture std_srvs/srv/Trigger "{}"
-```
----
-
 
 # Robot Model Visualization
 
