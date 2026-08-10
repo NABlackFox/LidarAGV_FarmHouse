@@ -258,6 +258,8 @@ To save the map please input these location accordingly in the slam pannel
 
 `Serialize map:` ./src/orlar_agv/maps/orlar_farm_house_serial
 
+![slam_tool_box_panel](docs/slam_tool_box_panel.png)
+
 # Creating a Route with RViz
 
 The AGV moves only along predefined paths, using the route server to search for and navigate a route. To create a route, use the `Nav2 Route Tool`, replacing the file path with the path to the map saved in the previous section:
@@ -316,6 +318,55 @@ To `Edit` or `Remove` a node or edge, switch to the corresponding tab in the `Ro
 
 # Setup for Route Follow Mission
 
+After creating a pathway for the AGV, it needs to know how to navigate along that path. To do this, we use another `mission_route.yaml` file (located in `paths folder`) to tell the `route_follow` node what to do. Here's an example of what it should look like:
+
+```yaml
+home:
+  node_id: 0
+
+inspection_points:
+- id: table_1
+  start_id: 0
+  end_id: 1
+  camera: "on"
+- id: move_to_table_2
+  start_id: 1
+  end_id: 3
+  camera: "off"
+- id: table_2
+  start_id: 3
+  end_id: 4
+  camera: "on"
+- id: move_to_table_3
+  start_id: 4
+  end_id: 6
+  camera: "off"
+- id: table_3
+  start_id: 6
+  end_id: 7
+  camera: "on"
+```
+
+## `home`
+
+```yaml
+home:
+  node_id: 0
+```
+
+The `home` field contains the ID of the AGV's starting node. This should be the AGV's home position — the start and end point of the entire operation in the farmhouse.
+
+## `inspection_points`
+
+The `inspection_points` field defines the navigation tasks that tell the AGV how to navigate and what actions to perform along the way:
+
+```yaml
+inspection_points:
+- id: the ID of the table the AGV will capture at when moving along this path, or just a note (e.g. "move_to_table_1") when it's not capturing
+  start_id: the starting position, or the AGV's current position
+  end_id: the end position of the navigation task
+  camera: the camera state, "on" or "off" (turn "off" when switching halls)
+```
 
 # Navigation with Nav2
 
