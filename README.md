@@ -232,7 +232,15 @@ ros2 launch orlar_agv launch_sim.launch.py
 ```
 ---
 # Slam_tool_box
-### Option 1: 
+
+### Option 1: All-in-One Quick Run (Unified Launch)
+
+If you want to spin up Gazebo, SLAM, and your custom RViz setup simultaneously without opening multiple terminals, use this single command:
+```bash
+ros2 launch orlar_agv orlar_mapping.launch.py
+```
+
+### Option 2: 
 
 To use the slam_tool_box, run the simulation like the previous section then use this command to enable the slam
 ```bash
@@ -243,12 +251,6 @@ To change any setting for the slam_tool_box please modidy the `mapper_params_onl
 To show it in rviz2 use this command
 ```bash
 ros2 run rviz2 rviz2 -d src/orlar_agv/config/slam_mapping.rviz 
-```
-### Option 2: All-in-One Quick Run (Unified Launch)
-
-If you want to spin up Gazebo, SLAM, and your custom RViz setup simultaneously without opening multiple terminals, use this single command:
-```bash
-ros2 launch orlar_agv orlar_mapping.launch.py
 ```
 
 ### Save map
