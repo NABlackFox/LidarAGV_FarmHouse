@@ -21,7 +21,7 @@ inspection_points:
 - id: move_to_table_4
   start_id: 5
   end_id: 13
-  camera: "on"
+  camera: "off"
 - id: table_4
   start_id: 13
   end_id: 12
@@ -29,7 +29,7 @@ inspection_points:
 - id: move_to_table_2
   start_id: 12
   end_id: 1
-  camera: "on"
+  camera: "off"
 - id: table_1
   start_id: 1
   end_id: 0
