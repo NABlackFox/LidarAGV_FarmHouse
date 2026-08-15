@@ -44,8 +44,8 @@
         <pose>0 0 0.345 0 0 0</pose>
         <geometry><sphere><radius>0.075</radius></sphere></geometry>
         <material>
-          <ambient>0.18 0.48 0.15 1</ambient>
-          <diffuse>0.18 0.48 0.15 1</diffuse>
+          <ambient>0.65 0.08 0.06 1</ambient>
+          <diffuse>0.65 0.08 0.06 1</diffuse>
         </material>
       </visual>
 
