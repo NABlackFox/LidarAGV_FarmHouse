@@ -32,7 +32,7 @@ def generate_launch_description():
     default_world = os.path.join(
         get_package_share_directory(package_name),
         'worlds',
-        'orlar_table_new_layout.sdf'
+        'orlar_table_greenhouse_layout.sdf'
         # 'orlar_table_world_objects.sdf'
     )    
     

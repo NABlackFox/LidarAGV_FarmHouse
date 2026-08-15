@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="plant_fruit">
+    <static>true</static>
+
+    <link name="link">
+
+      <!-- POT (same footprint as plant_leafy so rows line up visually) -->
+      <visual name="pot_visual">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry><cylinder><radius>0.07</radius><length>0.09</length></cylinder></geometry>
+        <material>
+          <ambient>0.45 0.30 0.18 1</ambient>
+          <diffuse>0.45 0.30 0.18 1</diffuse>
+        </material>
+      </visual>
+      <collision name="pot_collision">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry><cylinder><radius>0.07</radius><length>0.09</length></cylinder></geometry>
+      </collision>
+
+      <!-- SOIL CAP -->
+      <visual name="soil_visual">
+        <pose>0 0 0.09 0 0 0</pose>
+        <geometry><cylinder><radius>0.065</radius><length>0.01</length></cylinder></geometry>
+        <material>
+          <ambient>0.25 0.16 0.10 1</ambient>
+          <diffuse>0.25 0.16 0.10 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- STEM -->
+      <visual name="stem_visual">
+        <pose>0 0 0.20 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.22</length></cylinder></geometry>
+        <material>
+          <ambient>0.20 0.42 0.14 1</ambient>
+          <diffuse>0.20 0.42 0.14 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- FOLIAGE at top of stem -->
+      <visual name="foliage_visual">
+        <pose>0 0 0.345 0 0 0</pose>
+        <geometry><sphere><radius>0.075</radius></sphere></geometry>
+        <material>
+          <ambient>0.18 0.48 0.15 1</ambient>
+          <diffuse>0.18 0.48 0.15 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- FRUIT: small red spheres nestled in the foliage -->
+      <visual name="fruit_1">
+        <pose>0.05 0.02 0.33 0 0 0</pose>
+        <geometry><sphere><radius>0.025</radius></sphere></geometry>
+        <material><ambient>0.75 0.10 0.08 1</ambient><diffuse>0.75 0.10 0.08 1</diffuse></material>
+      </visual>
+      <visual name="fruit_2">
+        <pose>-0.04 0.035 0.36 0 0 0</pose>
+        <geometry><sphere><radius>0.022</radius></sphere></geometry>
+        <material><ambient>0.78 0.12 0.09 1</ambient><diffuse>0.78 0.12 0.09 1</diffuse></material>
+      </visual>
+      <visual name="fruit_3">
+        <pose>-0.01 -0.05 0.32 0 0 0</pose>
+        <geometry><sphere><radius>0.024</radius></sphere></geometry>
+        <material><ambient>0.70 0.09 0.07 1</ambient><diffuse>0.70 0.09 0.07 1</diffuse></material>
+      </visual>
+
+      <!-- Single simplified collision covering stem + foliage (cheap physics) -->
+      <collision name="canopy_collision">
+        <pose>0 0 0.30 0 0 0</pose>
+        <geometry><sphere><radius>0.10</radius></sphere></geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>
