@@ -625,3 +625,12 @@ cd ~/ros2_ws
 rm -rf build/ log/ install/
 colcon build --symlink-install
 ```
+
+Make the wsl render using GPU instead of IGPU, you can add into the `./bashrc` instruction to make it enable for every section.
+
+Replace NVIDIA with AMD if your using AMD
+```bash
+export GALLIUM_DRIVER=d3d12
+export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+export LIBGL_ALWAYS_SOFTWARE=0
+```
