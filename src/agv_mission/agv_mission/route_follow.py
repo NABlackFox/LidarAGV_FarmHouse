@@ -103,6 +103,7 @@ class RouteFollower(Node):
         goal_msg.use_start = True    # use start_id, not live pose
         goal_msg.use_poses = False
 
+        # send the request and wait until it's accepted
         send_future = self.compute_client.send_goal_async(goal_msg)
         rclpy.spin_until_future_complete(self, send_future)
         goal_handle = send_future.result()
@@ -111,10 +112,12 @@ class RouteFollower(Node):
             self.get_logger().error(f'ComputeRoute {start_id}->{goal_id} rejected!')
             return None
 
+        # wait for the actual route result to come back
         result_future = goal_handle.get_result_async()
         rclpy.spin_until_future_complete(self, result_future)
         result = result_future.result().result
 
+        # check if route computation itself failed
         if result.error_code != 0:
             self.get_logger().error(
                 f'ComputeRoute {start_id}->{goal_id} failed: {result.error_msg} '
@@ -136,6 +139,7 @@ class RouteFollower(Node):
         nav2_params.yaml > stall_check_interval * max_stalls, otherwise
         controller_server aborts the goal before this watchdog runs.
         """
+        # build the FollowPath goal
         goal_msg = FollowPath.Goal()
         goal_msg.path = path
         goal_msg.controller_id = 'FollowPath'
@@ -144,6 +148,7 @@ class RouteFollower(Node):
 
         self._latest_distance_to_goal = None
 
+        # send it and wait until it's accepted
         send_future = self.follow_client.send_goal_async(
             goal_msg, feedback_callback=self._follow_feedback_cb)
         rclpy.spin_until_future_complete(self, send_future)
@@ -160,9 +165,11 @@ class RouteFollower(Node):
         stall_count = 0
         last_check_time = time.time()
 
+        # main drive loop -- keeps spinning until the goal finishes
         while not result_future.done():
             rclpy.spin_once(self, timeout_sec=0.2)
 
+            # timer check: only run the stall check every stall_check_interval seconds
             now = time.time()
             if now - last_check_time < stall_check_interval:
                 continue
@@ -172,6 +179,7 @@ class RouteFollower(Node):
             if current_distance is None:
                 continue  # no feedback yet
 
+            # progress check: compare distance now vs last check
             made_progress = (
                 last_seen_distance is None
                 or (last_seen_distance - current_distance) > progress_epsilon
@@ -184,6 +192,7 @@ class RouteFollower(Node):
                 stall_count = 0
                 continue
 
+            # no progress this interval -- bump stall counter and clear costmaps
             stall_count += 1
             self.get_logger().warn(
                 f'No progress for ~{stall_check_interval:.0f}s '
@@ -193,6 +202,7 @@ class RouteFollower(Node):
             )
             self.clear_costmaps()
 
+            # too many stalls in a row -- give up and cancel the goal
             if stall_count >= max_stalls:
                 self.get_logger().error(
                     f'No progress after {max_stalls} checks '
@@ -203,6 +213,7 @@ class RouteFollower(Node):
                 rclpy.spin_until_future_complete(self, cancel_future)
                 return False
 
+        # goal finished (success, aborted, or canceled) -- check how it ended
         wrapped_result = result_future.result()
         status = wrapped_result.status
         error_code = wrapped_result.result.error_code
@@ -217,6 +228,7 @@ class RouteFollower(Node):
             )
             return False
 
+    # feedback callback -- just caches the latest distance for the stall check above
     def _follow_feedback_cb(self, feedback_msg):
         fb = feedback_msg.feedback
         self._latest_distance_to_goal = fb.distance_to_goal
@@ -230,11 +242,13 @@ class RouteFollower(Node):
         """Computes route between explicit graph nodes, drives it as a
         single persistent FollowPath goal, then clears costmaps on
         success (bumpy terrain blurs the map over a run)."""
+        # step 1: compute the route
         path = self.compute_route(start_id, end_id)
         if path is None:
             self.get_logger().error(f'Could not compute a route {start_id}->{end_id}.')
             return False
 
+        # step 2: drive the route
         success = self.follow_path_persistent(path)
         if success:
             self.get_logger().info(f'Segment {start_id}->{end_id} complete. Clearing costmaps.')
@@ -244,9 +258,11 @@ class RouteFollower(Node):
     def run_mission(self):
         current_node = self.home['node_id']
 
+        # main loop over every inspection point in the yaml
         for point in self.points:
             point_id = point.get('id', 'Table_Unknown')
 
+            # drive to this point
             self.get_logger().info(f'--- Heading to {point_id} ---')
             if not self.go_segment(point['start_id'], point['end_id']):
                 self.get_logger().error(
@@ -256,6 +272,7 @@ class RouteFollower(Node):
 
             current_node = point['end_id']
 
+        # all points done -- head back home
         self.get_logger().info('Returning home...')
         self.go_segment(current_node, self.home['node_id'])
 
