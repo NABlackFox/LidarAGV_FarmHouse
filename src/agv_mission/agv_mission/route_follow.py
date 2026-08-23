@@ -11,7 +11,6 @@ from ament_index_python.packages import get_package_share_directory
 from action_msgs.msg import GoalStatus
 from nav2_msgs.action import ComputeRoute, FollowPath
 from nav2_msgs.srv import ClearEntireCostmap
-from custom_interfaces.srv import SetCameraState
 
 
 # nav2_msgs/action/FollowPath.action result.error_code values
@@ -61,12 +60,6 @@ class RouteFollower(Node):
         self.follow_client.wait_for_server()
         self.get_logger().info('Servers connected!')
 
-        # Camera control service
-        self.camera_client = self.create_client(SetCameraState, '/camera/set_state')
-        self.get_logger().info('Waiting for camera service...')
-        self.camera_client.wait_for_service()
-        self.get_logger().info('Camera service connected!')
-
         # Costmap clearing services
         self.clear_local_client = self.create_client(
             ClearEntireCostmap, 'local_costmap/clear_entirely_local_costmap')
@@ -87,27 +80,6 @@ class RouteFollower(Node):
             data = yaml.safe_load(file)
         self.home = data['home']
         self.points = data['inspection_points']
-
-    # --- Camera -----------------------------------------------------------
-    def set_camera_state(self, state_str, table_id="NONE"):
-        state_str = str(state_str).lower()
-        enable = (state_str == 'on')
-
-        request = SetCameraState.Request()
-        request.enable = enable
-        request.table_id = str(table_id)
-
-        future = self.camera_client.call_async(request)
-        while not future.done():
-            rclpy.spin_once(self, timeout_sec=0.1)
-
-        result = future.result()
-        if result and result.success:
-            self.get_logger().info(f'Camera set to {state_str.upper()} [ID: {table_id}]')
-            return True
-        else:
-            self.get_logger().error(f'Failed setting camera state for {table_id}')
-            return False
 
     # --- Costmap maintenance --------------------------------------------
     def clear_costmaps(self):
@@ -154,7 +126,7 @@ class RouteFollower(Node):
         return result.path
 
     def follow_path_persistent(self, path, stall_check_interval=15.0,
-                                max_stalls=20, progress_epsilon=0.05):
+                                max_stalls=10, progress_epsilon=0.05):
         """Drives one path as a single FollowPath goal that survives
         stalls (e.g. person in the way). While stalled: clear costmaps
         and keep waiting, no new goal is created. Gives up only after
@@ -270,29 +242,20 @@ class RouteFollower(Node):
         return success
 
     def run_mission(self):
-        self.set_camera_state('off', 'INITIAL')
-
         current_node = self.home['node_id']
 
         for point in self.points:
             point_id = point.get('id', 'Table_Unknown')
-            camera_setting = point.get('camera', 'off')
-
-            if not self.set_camera_state(camera_setting, table_id=point_id):
-                self.get_logger().error('Mission aborted due to camera service failure.')
-                return
 
             self.get_logger().info(f'--- Heading to {point_id} ---')
             if not self.go_segment(point['start_id'], point['end_id']):
                 self.get_logger().error(
                     'Mission aborted -- segment failed permanently, needs human operator.'
                 )
-                self.set_camera_state('off', point_id)
                 return
 
             current_node = point['end_id']
 
-        self.set_camera_state('off', 'RETURNING_HOME')
         self.get_logger().info('Returning home...')
         self.go_segment(current_node, self.home['node_id'])
 
