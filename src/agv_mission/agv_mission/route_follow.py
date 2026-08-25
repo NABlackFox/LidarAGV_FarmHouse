@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 import os
 import time
 import yaml
@@ -11,6 +12,14 @@ from ament_index_python.packages import get_package_share_directory
 from action_msgs.msg import GoalStatus
 from nav2_msgs.action import ComputeRoute, FollowPath
 from nav2_msgs.srv import ClearEntireCostmap
+
+from tf2_ros import Buffer, TransformListener
+from tf2_ros import LookupException, ConnectivityException, ExtrapolationException
+
+# Frames used for the TF-based progress check below. Match these to
+# your nav2_params.yaml (global_frame / robot_base_frame).
+GLOBAL_FRAME = 'map'
+ROBOT_FRAME = 'base_link'
 
 
 # nav2_msgs/action/FollowPath.action result.error_code values
@@ -70,8 +79,27 @@ class RouteFollower(Node):
         self.clear_global_client.wait_for_service()
         self.get_logger().info('Costmap clearing services connected!')
 
+        # TF setup -- used by the watchdog to check real movement instead
+        # of trusting FollowPath's own distance_to_goal feedback
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
         self._latest_distance_to_goal = None
         self.load_mission_routes()
+
+    # --- TF progress check --------------------------------------------
+    def get_current_position(self):
+        """Looks up the robot's current (x, y) in GLOBAL_FRAME via TF.
+        Returns None if the transform isn't available yet -- this is the
+        ground-truth pose source, independent of FollowPath feedback."""
+        try:
+            tf = self.tf_buffer.lookup_transform(
+                GLOBAL_FRAME, ROBOT_FRAME, rclpy.time.Time())
+        except (LookupException, ConnectivityException, ExtrapolationException) as e:
+            self.get_logger().warn(f'TF lookup failed: {e}')
+            return None
+        t = tf.transform.translation
+        return (t.x, t.y)
 
     def load_mission_routes(self):
         pkg_path = get_package_share_directory('agv_mission')
@@ -161,7 +189,7 @@ class RouteFollower(Node):
         self.get_logger().info('FollowPath ACCEPTED. Driving...')
         result_future = goal_handle.get_result_async()
 
-        last_seen_distance = None
+        last_seen_position = None
         stall_count = 0
         last_check_time = time.time()
 
@@ -175,16 +203,21 @@ class RouteFollower(Node):
                 continue
             last_check_time = now
 
-            current_distance = self._latest_distance_to_goal
-            if current_distance is None:
-                continue  # no feedback yet
+            # progress check: real (x, y) displacement from TF, NOT
+            # FollowPath's own distance_to_goal feedback -- that field
+            # can freeze/jump on its own even while the robot is
+            # actually driving fine, see notes on get_current_position.
+            current_position = self.get_current_position()
+            if current_position is None:
+                continue  # TF not ready yet
 
-            # progress check: compare distance now vs last check
-            made_progress = (
-                last_seen_distance is None
-                or (last_seen_distance - current_distance) > progress_epsilon
-            )
-            last_seen_distance = current_distance
+            if last_seen_position is None:
+                made_progress = True
+            else:
+                dx = current_position[0] - last_seen_position[0]
+                dy = current_position[1] - last_seen_position[1]
+                made_progress = math.hypot(dx, dy) > progress_epsilon
+            last_seen_position = current_position
 
             if made_progress:
                 if stall_count > 0:
@@ -194,10 +227,14 @@ class RouteFollower(Node):
 
             # no progress this interval -- bump stall counter and clear costmaps
             stall_count += 1
+            logged_distance = (
+                f'{self._latest_distance_to_goal:.2f} m'
+                if self._latest_distance_to_goal is not None else 'unknown'
+            )
             self.get_logger().warn(
                 f'No progress for ~{stall_check_interval:.0f}s '
                 f'(stall {stall_count}/{max_stalls}), '
-                f'distance_to_goal={current_distance:.2f} m. '
+                f'distance_to_goal={logged_distance} (feedback, informational only). '
                 'Clearing costmaps, still waiting...'
             )
             self.clear_costmaps()
