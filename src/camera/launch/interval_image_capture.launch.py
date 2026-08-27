@@ -41,7 +41,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'capture_interval',
-            default_value='5.0',
+            default_value='10.0',
             description='Interval in seconds between image captures'
         ),
         interval_image_capture_node,
