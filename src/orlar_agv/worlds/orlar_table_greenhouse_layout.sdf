@@ -88,581 +88,216 @@
       </link>
     </model>
 
-    <!-- DAY BAN 1 - TABLES -->
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row1_1</name>
+    <!-- Table Section -->
+
+    <model name='table_green_crop_row1_1'>
+      <static>true</static>
       <pose>-8.2400 -3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row1_2</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose>
+      </include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row1_2'>
+      <static>true</static>
       <pose>-4.0950 -3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row1_3</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row1_3'>
+      <static>true</static>
       <pose>0.0500 -3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row1_4</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row1_4'>
+      <static>true</static>
       <pose>4.1950 -3.5400 0.0000 1.5708 0 0</pose>
-    </include>
 
-    <!-- DAY BAN 2 - TABLES -->
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row2_1</name>
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row2_1'>
+      <static>true</static>
       <pose>-8.2400 -1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row2_2</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row2_2'>
+      <static>true</static>
       <pose>-4.0950 -1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row2_3</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row2_3'>
+      <static>true</static>
       <pose>0.0500 -1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row2_4</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row2_4'>
+      <static>true</static>
       <pose>4.1950 -1.1800 0.0000 1.5708 0 0</pose>
-    </include>
 
-    <!-- DAY BAN 3 - TABLES -->
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row3_1</name>
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row3_1'>
+      <static>true</static>
       <pose>-8.2400 1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row3_2</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row3_2'>
+      <static>true</static>
       <pose>-4.0950 1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row3_3</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row3_3'>
+      <static>true</static>
       <pose>0.0500 1.1800 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row3_4</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_green_crop_row3_4'>
+      <static>true</static>
       <pose>4.1950 1.1800 0.0000 1.5708 0 0</pose>
-    </include>
 
-    <!-- DAY BAN 4 - TABLES -->
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row4_1</name>
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_leafy</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row4_1'>
+      <static>true</static>
       <pose>-8.2400 3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row4_2</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row4_2'>
+      <static>true</static>
       <pose>-4.0950 3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row4_3</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row4_3'>
+      <static>true</static>
       <pose>0.0500 3.5400 0.0000 1.5708 0 0</pose>
-    </include>
-    <include>
-      <uri>model://orlar_table</uri>
-      <name>orlar_table_row4_4</name>
+
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
+
+    <model name='table_red_crop_row4_4'>
+      <static>true</static>
       <pose>4.1950 3.5400 0.0000 1.5708 0 0</pose>
-    </include>
 
-    <!-- DAY BAN 1 - PLANTS (plant_leafy), 2 hang -->
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t1_1</name>
-      <pose>-7.4310 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t1_2</name>
-      <pose>-6.2175 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t1_3</name>
-      <pose>-5.0040 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t2_1</name>
-      <pose>-3.2860 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t2_2</name>
-      <pose>-2.0725 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t2_3</name>
-      <pose>-0.8590 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t3_1</name>
-      <pose>0.8590 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t3_2</name>
-      <pose>2.0725 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t3_3</name>
-      <pose>3.2860 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t4_1</name>
-      <pose>5.0040 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t4_2</name>
-      <pose>6.2175 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_front_t4_3</name>
-      <pose>7.4310 -4.5250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t1_1</name>
-      <pose>-7.4310 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t1_2</name>
-      <pose>-6.2175 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t1_3</name>
-      <pose>-5.0040 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t2_1</name>
-      <pose>-3.2860 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t2_2</name>
-      <pose>-2.0725 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t2_3</name>
-      <pose>-0.8590 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t3_1</name>
-      <pose>0.8590 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t3_2</name>
-      <pose>2.0725 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t3_3</name>
-      <pose>3.2860 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t4_1</name>
-      <pose>5.0040 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t4_2</name>
-      <pose>6.2175 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d1_back_t4_3</name>
-      <pose>7.4310 -3.8250 0.9600 0.0 0.0 0.0</pose>
-    </include>
-
-    <!-- DAY BAN 2 - PLANTS (plant_fruit), 2 hang -->
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t1_1</name>
-      <pose>-7.4310 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t1_2</name>
-      <pose>-6.2175 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t1_3</name>
-      <pose>-5.0040 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t2_1</name>
-      <pose>-3.2860 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t2_2</name>
-      <pose>-2.0725 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t2_3</name>
-      <pose>-0.8590 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t3_1</name>
-      <pose>0.8590 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t3_2</name>
-      <pose>2.0725 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t3_3</name>
-      <pose>3.2860 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t4_1</name>
-      <pose>5.0040 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t4_2</name>
-      <pose>6.2175 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_front_t4_3</name>
-      <pose>7.4310 -2.1650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t1_1</name>
-      <pose>-7.4310 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t1_2</name>
-      <pose>-6.2175 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t1_3</name>
-      <pose>-5.0040 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t2_1</name>
-      <pose>-3.2860 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t2_2</name>
-      <pose>-2.0725 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t2_3</name>
-      <pose>-0.8590 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t3_1</name>
-      <pose>0.8590 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t3_2</name>
-      <pose>2.0725 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t3_3</name>
-      <pose>3.2860 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t4_1</name>
-      <pose>5.0040 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t4_2</name>
-      <pose>6.2175 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d2_back_t4_3</name>
-      <pose>7.4310 -1.4650 0.9600 0.0 0.0 0.0</pose>
-    </include>
-
-    <!-- DAY BAN 3 - PLANTS (plant_leafy), 2 hang -->
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t1_1</name>
-      <pose>-7.4310 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t1_2</name>
-      <pose>-6.2175 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t1_3</name>
-      <pose>-5.0040 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t2_1</name>
-      <pose>-3.2860 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t2_2</name>
-      <pose>-2.0725 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t2_3</name>
-      <pose>-0.8590 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t3_1</name>
-      <pose>0.8590 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t3_2</name>
-      <pose>2.0725 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t3_3</name>
-      <pose>3.2860 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t4_1</name>
-      <pose>5.0040 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t4_2</name>
-      <pose>6.2175 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_front_t4_3</name>
-      <pose>7.4310 0.1950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t1_1</name>
-      <pose>-7.4310 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t1_2</name>
-      <pose>-6.2175 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t1_3</name>
-      <pose>-5.0040 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t2_1</name>
-      <pose>-3.2860 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t2_2</name>
-      <pose>-2.0725 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t2_3</name>
-      <pose>-0.8590 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t3_1</name>
-      <pose>0.8590 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t3_2</name>
-      <pose>2.0725 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t3_3</name>
-      <pose>3.2860 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t4_1</name>
-      <pose>5.0040 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t4_2</name>
-      <pose>6.2175 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_leafy</uri>
-      <name>plant_leafy_d3_back_t4_3</name>
-      <pose>7.4310 0.8950 0.9600 0.0 0.0 0.0</pose>
-    </include>
-
-    <!-- DAY BAN 4 - PLANTS (plant_fruit), 2 hang -->
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t1_1</name>
-      <pose>-7.4310 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t1_2</name>
-      <pose>-6.2175 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t1_3</name>
-      <pose>-5.0040 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t2_1</name>
-      <pose>-3.2860 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t2_2</name>
-      <pose>-2.0725 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t2_3</name>
-      <pose>-0.8590 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t3_1</name>
-      <pose>0.8590 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t3_2</name>
-      <pose>2.0725 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t3_3</name>
-      <pose>3.2860 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t4_1</name>
-      <pose>5.0040 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t4_2</name>
-      <pose>6.2175 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_front_t4_3</name>
-      <pose>7.4310 2.5550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t1_1</name>
-      <pose>-7.4310 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t1_2</name>
-      <pose>-6.2175 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t1_3</name>
-      <pose>-5.0040 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t2_1</name>
-      <pose>-3.2860 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t2_2</name>
-      <pose>-2.0725 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t2_3</name>
-      <pose>-0.8590 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t3_1</name>
-      <pose>0.8590 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t3_2</name>
-      <pose>2.0725 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t3_3</name>
-      <pose>3.2860 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t4_1</name>
-      <pose>5.0040 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t4_2</name>
-      <pose>6.2175 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
-    <include>
-      <uri>model://plant_fruit</uri>
-      <name>plant_fruit_d4_back_t4_3</name>
-      <pose>7.4310 3.2550 0.9600 0.0 0.0 0.0</pose>
-    </include>
+      <include><uri>model://orlar_table</uri><name>table</name><pose>0 0 0 0 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_1</name><pose>0.8090 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_2</name><pose>2.0225 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_front_3</name><pose>3.2360 0.9600 0.9850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_1</name><pose>0.8090 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_2</name><pose>2.0225 0.9600 0.2850 -1.5708 0 0</pose></include>
+      <include><uri>model://plant_fruit</uri><name>crop_back_3</name><pose>3.2360 0.9600 0.2850 -1.5708 0 0</pose></include>
+    </model>
 
     <!-- LIGHT SOURCE -->
     <light name='sun' type='directional'>
