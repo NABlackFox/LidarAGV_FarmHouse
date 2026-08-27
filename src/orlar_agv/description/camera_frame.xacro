@@ -49,7 +49,7 @@
         ═══════════════════════════════════════════ -->
 
     <xacro:property name="arm_radius"   value="0.03"/>
-    <xacro:property name="arm_length"   value="1.5"/>   <!-- reaches to x = 0.5025 -->
+    <xacro:property name="arm_length"   value="1.22"/>   <!-- reaches to x = 0.5025 -->
     <!-- arm is attached to top of pole:
          pole top z (chassis frame) = 0.414 + pole_length = 1.231
          arm centre: x = arm_length/2, z = 1.231 (unchanged) -->

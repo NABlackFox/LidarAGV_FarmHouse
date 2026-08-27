@@ -22,7 +22,7 @@
                  z = 1.231 m          (see calculation above)
             rpy: pitch = pi/2 → optical axis points straight down
         -->
-        <origin xyz="0 -1.5 2.8857" rpy="0 ${pi/2} 0"/>
+        <origin xyz="0 ${-arm_length} ${0.3857 + pole_length}" rpy="0 ${pi/2} 0"/>
     </joint>
 
     <link name="top_camera_link">
