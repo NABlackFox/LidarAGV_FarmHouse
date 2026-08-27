@@ -6,15 +6,11 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 
-from sensor_msgs.msg import Image
-from custom_interfaces.srv import SetCameraState  # Custom Interface
+from sensor_msgs.msg import CompressedImage
+from custom_interfaces.srv import SetCameraState
 
-try:
-    from cv_bridge import CvBridge
-    import cv2
-    _HAS_CV = True
-except ImportError:
-    _HAS_CV = False
+from cv_bridge import CvBridge
+import cv2
 
 
 class IntervalImageCaptureService(Node):
@@ -24,7 +20,7 @@ class IntervalImageCaptureService(Node):
         super().__init__('interval_image_capture_service')
 
         # ---- Parameters -------------------------------------------------
-        self.declare_parameter('image_topic', '/top_camera/image_raw')
+        self.declare_parameter('image_topic', '/top_camera/image_raw/compressed')
         self.declare_parameter('save_dir', '/tmp/orlar_pictures')
         self.declare_parameter('image_format', 'png')
         self.declare_parameter('capture_interval', 5.0)
@@ -36,30 +32,27 @@ class IntervalImageCaptureService(Node):
 
         os.makedirs(self.save_dir, exist_ok=True)
 
-        if not _HAS_CV:
-            self.get_logger().error("cv_bridge / OpenCV not found.")
-
-        self.bridge = CvBridge() if _HAS_CV else None
+        self.bridge = CvBridge()
         self._latest_frame = None
         self.enable_capture = False
         self.current_table_id = "UNKNOWN"
 
-        # Subscriber
+        # subscriber -- CompressedImage, best-effort to match the driver
         qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
             history=HistoryPolicy.KEEP_LAST,
             depth=1,
         )
         self._sub = self.create_subscription(
-            Image, self.image_topic, self._image_callback, qos
+            CompressedImage, self.image_topic, self._image_callback, qos
         )
 
-        # Service using Custom Interface
+        # service -- lets route_follow (or anyone) toggle capture + tag table_id
         self._toggle_srv = self.create_service(
             SetCameraState, '/camera/set_state', self._toggle_capture_callback
         )
 
-        # Timer
+        # timer -- fires independently of the image callback
         if self.capture_interval > 0:
             self._timer = self.create_timer(
                 self.capture_interval, self._save_image_callback
@@ -68,46 +61,63 @@ class IntervalImageCaptureService(Node):
         self.get_logger().info(
             f"Interval Image Capture Service Ready.\n"
             f"  Topic    : {self.image_topic}\n"
+            f"  Save dir : {self.save_dir}\n"
             f"  Interval : Every {self.capture_interval}s\n"
-            f"  Service  : /camera/set_state (agv_interfaces/srv/SetCameraState)"
+            f"  Service  : /camera/set_state"
         )
 
+    # --- service ------------------------------------------------------------
     def _toggle_capture_callback(self, request, response):
         self.enable_capture = request.enable
-        # Store requested table ID (fallback to UNKNOWN if empty)
         self.current_table_id = request.table_id.strip() if request.table_id else "UNKNOWN"
-        
+
         status = "ENABLED" if self.enable_capture else "DISABLED"
         self.get_logger().info(
             f"Camera recording {status} for Table ID: '{self.current_table_id}'"
         )
-        
+
         response.success = True
         response.message = f"Recording status set to {self.enable_capture} for {self.current_table_id}"
         return response
 
-    def _image_callback(self, msg: Image):
-        if not _HAS_CV:
-            return
+    # --- image callback -------------------------------------------------
+    def _image_callback(self, msg: CompressedImage):
         try:
-            self._latest_frame = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+            frame = self.bridge.compressed_imgmsg_to_cv2(msg, desired_encoding='bgr8')
         except Exception as e:
             self.get_logger().warn(f"Failed to convert frame: {e}")
-
-    def _save_image_callback(self):
-        if not self.enable_capture or not _HAS_CV or self._latest_frame is None:
             return
 
-        # Format: YYYY-MM-DD_HH:MM:SS
+        # validity check: cv2.imdecode (inside cv_bridge) can return None
+        # or a zero-size array on a truncated/corrupt compressed frame
+        # WITHOUT raising -- catching that here is what stops garbage
+        # frames from ever reaching self._latest_frame.
+        if frame is None or frame.size == 0:
+            self.get_logger().warn(
+                f"Decoded frame invalid (msg.data={len(msg.data)} bytes), skipping."
+            )
+            return
+
+        self._latest_frame = frame
+
+    # --- capture timer --------------------------------------------------
+    def _save_image_callback(self):
+        if not self.enable_capture or self._latest_frame is None:
+            return
+
+        # safe timestamp without colons: YYYY-MM-DD_HH-MM-SS
         now = datetime.now()
-        timestamp = now.strftime('%Y-%m-%d_%H:%M:%S')
+        timestamp = now.strftime('%Y-%m-%d_%H-%M-%S')
 
         filename = f"{self.current_table_id}_{timestamp}.{self.image_format}"
         filepath = os.path.join(self.save_dir, filename)
 
         try:
-            cv2.imwrite(filepath, self._latest_frame)
-            self.get_logger().info(f"Interval frame saved: {filepath}")
+            success = cv2.imwrite(filepath, self._latest_frame)
+            if success:
+                self.get_logger().info(f"Interval frame saved: {filepath}")
+            else:
+                self.get_logger().error(f"cv2.imwrite returned False for path: {filepath}")
         except Exception as e:
             self.get_logger().error(f"Failed to save frame: {e}")
 

@@ -26,8 +26,8 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             'image_topic',
-            default_value='/top_camera/image_raw',
-            description='Raw image topic'
+            default_value='/top_camera/image_raw/compressed',
+            description='Compressed image topic'
         ),
         DeclareLaunchArgument(
             'save_dir',
