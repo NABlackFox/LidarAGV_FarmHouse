@@ -30,7 +30,7 @@ inspection_points:
   start_id: 12
   end_id: 1
   camera: "off"
-- id: table_1
+- id: table_2
   start_id: 1
   end_id: 0
   camera: "on"
