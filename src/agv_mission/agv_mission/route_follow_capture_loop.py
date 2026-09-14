@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
+import glob
 import math
 import os
+import shutil
 import time
 import yaml
+
+# Folder that gets wiped between loops during showcase runs (see
+# clear_capture_folder below). NOT used in normal deployment.
+CAPTURE_DIR = 'pics/orlar_interval'
 
 import rclpy
 from rclpy.node import Node
@@ -353,6 +359,10 @@ class RouteFollower(Node):
         self.go_segment(current_node, self.home['node_id'])
 
 
+# ---------------------------------------------------------------------------
+# New node: same behavior as RouteFollower, but after reaching home it
+# just starts the mission over again, forever, printing a loop counter.
+# ---------------------------------------------------------------------------
 class FollowRouteCaptureLoop(RouteFollower):
 
     def __init__(self):
@@ -389,14 +399,36 @@ class FollowRouteCaptureLoop(RouteFollower):
 
         self.loop_count = 0
 
+    def clear_capture_folder(self, folder_path=CAPTURE_DIR):
+        """Equivalent of `rm -rf {folder_path}/*` -- wipes everything
+        inside the folder but keeps the folder itself. Showcase-only
+        cleanup between loops so 2 hours of running doesn't fill the
+        disk with images; not used in real deployment."""
+        if not os.path.isdir(folder_path):
+            self.get_logger().warn(f'Capture folder not found, skipping clear: {folder_path}')
+            return
+
+        for entry in glob.glob(os.path.join(folder_path, '*')):
+            try:
+                if os.path.isdir(entry) and not os.path.islink(entry):
+                    shutil.rmtree(entry)
+                else:
+                    os.remove(entry)
+            except OSError as e:
+                self.get_logger().warn(f'Failed to remove {entry}: {e}')
+
+        self.get_logger().info(f'Cleared capture folder: {folder_path}')
+
     def run_mission_loop(self):
         """Runs run_mission() (which already ends back at home) over and
         over, forever, with no gap in between. Prints/logs the current
-        loop number each time a lap starts and finishes."""
+        loop number each time a lap starts and finishes, and clears the
+        capture folder after each lap (showcase only)."""
         while rclpy.ok():
             self.loop_count += 1
             self.get_logger().info(f'=== Starting loop #{self.loop_count} ===')
             self.run_mission()
+            self.clear_capture_folder()
             self.get_logger().info(f'=== Finished loop #{self.loop_count} ===')
 
 
