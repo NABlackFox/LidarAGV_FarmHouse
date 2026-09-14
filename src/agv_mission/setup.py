@@ -32,6 +32,7 @@ setup(
             'route_follow_capture = agv_mission.route_follow_capture:main',
             'route_follow = agv_mission.route_follow:main',
             'route_follow_loop = agv_mission.route_follow_loop:main',
+            'route_follow_capture_loop = agv_mission.route_follow_capture_loop:main'
         ],
     },
 )
