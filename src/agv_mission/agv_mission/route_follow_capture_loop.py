@@ -358,11 +358,6 @@ class RouteFollower(Node):
         self.get_logger().info('Returning home...')
         self.go_segment(current_node, self.home['node_id'])
 
-
-# ---------------------------------------------------------------------------
-# New node: same behavior as RouteFollower, but after reaching home it
-# just starts the mission over again, forever, printing a loop counter.
-# ---------------------------------------------------------------------------
 class FollowRouteCaptureLoop(RouteFollower):
 
     def __init__(self):
