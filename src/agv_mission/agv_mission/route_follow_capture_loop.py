@@ -361,10 +361,7 @@ class RouteFollower(Node):
 class FollowRouteCaptureLoop(RouteFollower):
 
     def __init__(self):
-        # keep everything from RouteFollower.__init__, just rename the node
         Node.__init__(self, 'follow_route_capture_loop')
-        # re-run the rest of RouteFollower's setup manually since we
-        # skipped RouteFollower.__init__ (it hardcodes its own node name)
         self.compute_client = ActionClient(self, ComputeRoute, 'compute_route')
         self.follow_client = ActionClient(self, FollowPath, 'follow_path')
         self.get_logger().info('Waiting for compute_route, follow_path servers...')
